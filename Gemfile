@@ -29,7 +29,5 @@ gem 'annotate',  :git => 'git://github.com/ctran/annotate_models.git'
 # gem 'ruby-debug19', :require => 'ruby-debug'
 
   gem 'rspec-rails'
-  gem 'spork'
-  
-  gem 'pg'
+#  gem 'spork'
 
