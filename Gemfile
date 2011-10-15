@@ -17,6 +17,7 @@ group :assets do
 end
 
 gem 'jquery-rails'
+gem 'annotate',  :git => 'git://github.com/ctran/annotate_models.git'
 
 # Use unicorn as the web server
 # gem 'unicorn'
@@ -27,6 +28,8 @@ gem 'jquery-rails'
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
 
-gem 'rspec-rails'
-gem 'spork'
+  gem 'rspec-rails'
+  gem 'spork'
+  
+  gem 'pg'
 
