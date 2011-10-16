@@ -34,5 +34,8 @@ gem 'annotate',  :git => 'git://github.com/ctran/annotate_models.git'
   gem 'factory_girl_rails'
   
   gem 'gravatar_image_tag'
+  
+  gem 'pg'
+  
 #  gem 'spork'
 
