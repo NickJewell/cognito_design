@@ -11,12 +11,15 @@ gem 'sqlite3'
 
 gem 'will_paginate'
 
+#Moving this gem out of the development group
+gem 'faker'
+
 group :production do
   gem 'therubyracer'
 end
 
 group :development do
-  gem 'faker'
+
 end
 
 
