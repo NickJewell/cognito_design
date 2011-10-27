@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :authenticate, :only => [:index, :edit, :update, :destroy]
+  before_filter :authenticate, :only => [:edit, :update]
   before_filter :correct_user, :only => [:edit, :update]
   before_filter :admin_user,   :only => [:destroy]
 
@@ -67,3 +67,6 @@ private
       redirect_to((root_path), :flash => { :error => "Cannot delete admin or yourself!"}) unless current_user.admin? && current_user?(@user)
   end
 
+  def authenticate
+    deny_access unless signed_in?
+  end

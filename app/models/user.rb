@@ -18,6 +18,9 @@ class User < ActiveRecord::Base
   
   has_many :microposts, :dependent => :destroy
   
+  has_many :relationships, :dependent => :destroy,
+                           :foreign_key => "follower_id"
+  
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   
   validates :name, :presence => true,
