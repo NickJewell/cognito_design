@@ -1,6 +1,10 @@
 Cognito1::Application.routes.draw do
 
 
+  get "relationships/create"
+
+  get "relationships/destroy"
+
   resources :users do
     member do
       get :following, :followers  
