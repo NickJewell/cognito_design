@@ -11,7 +11,35 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111027201920) do
+ActiveRecord::Schema.define(:version => 20111030224710) do
+
+  create_table "channels", :force => true do |t|
+    t.string   "channel_name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "difficulties", :force => true do |t|
+    t.string   "difficulty_name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "event_sessions", :force => true do |t|
+    t.integer  "user_host_id"
+    t.integer  "channel_id"
+    t.integer  "difficulty_id"
+    t.integer  "status_id"
+    t.integer  "timezone_id"
+    t.integer  "size_id"
+    t.string   "title"
+    t.string   "content"
+    t.datetime "session_datetime"
+    t.integer  "duration"
+    t.string   "prereqs"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "microposts", :force => true do |t|
     t.string   "content"
@@ -31,6 +59,24 @@ ActiveRecord::Schema.define(:version => 20111027201920) do
 
   add_index "relationships", ["followed_id"], :name => "index_relationships_on_followed_id"
   add_index "relationships", ["follower_id"], :name => "index_relationships_on_follower_id"
+
+  create_table "sizes", :force => true do |t|
+    t.string   "size_name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "statuses", :force => true do |t|
+    t.string   "status_name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "timezones", :force => true do |t|
+    t.string   "timezone_name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", :force => true do |t|
     t.string   "name"
