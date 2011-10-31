@@ -7,6 +7,7 @@ namespace :db do
     make_users
     make_microposts
     make_relationships
+    make_timezones
   end
 end
 
@@ -43,4 +44,9 @@ def make_relationships
   followers = users[3..40]
   following.each { |followed| user.follow!(followed)  }
   followers.each { |follower| follower.follow!(user) }
+end
+
+def make_timezones
+
+  
 end

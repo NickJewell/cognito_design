@@ -1,6 +1,8 @@
 Cognito1::Application.routes.draw do
 
 
+  resources :timezones
+
   get "relationships/create"
 
   get "relationships/destroy"
