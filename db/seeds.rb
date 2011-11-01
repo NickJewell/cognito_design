@@ -12,6 +12,33 @@ tz = Timezone.create!(
                       [  {timezone_name: 'Asia Pacific Region'}, 
                          {timezone_name: 'Indian Region'},
                          {timezone_name: 'EMEA Region'},
-                         {timezone_name: 'Eastern USA & Latin America'},
-                         {timezone_name: 'Western USA'}
+                         {timezone_name: 'Americas Region'},
+                         {timezone_name: 'Flexible'}
                       ])
+                      
+ch = Channel.create!(
+                      [  {channel_name: 'In Person'}, 
+                         {channel_name: 'Phone/Conference'},
+                         {channel_name: 'Webex'},
+                         {channel_name: 'Video Conference'}
+                      ])                 
+                      
+df = Difficulty.create!(
+                      [ {difficulty_name: 'Beginner'},
+                        {difficulty_name: 'Intermediate'},
+                        {difficulty_name: 'Advanced'}
+                      ])         
+
+sz = Size.create!(
+                  [{size_name:'Duet (1-on-1)'},
+                   {size_name:'Huddle (2 to 9)'},
+                   {size_name:'Performance (10 to 49)'},
+                   {size_name:'Jamboree! (50+)'}
+                  ])
+                  
+status = Status.create!(
+                        [{status_name:'Under Proposal'},
+                         {status_name:'Booking'},
+                         {status_name:'Fully Booked!'},
+                         {status_name:'Completed'},
+                         {status_name:'Cancelled'}])                                                     
