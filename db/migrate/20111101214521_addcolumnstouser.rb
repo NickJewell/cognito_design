@@ -4,7 +4,7 @@ class Addcolumnstouser < ActiveRecord::Migration
     add_column :users, :city, :string
     add_column :users, :phone, :string
     add_column :users, :phone_alt, :string
-    add_column :users, :conference_line, :number
+    add_column :users, :conference_line, :string
     add_column :users, :webex_details, :string
     add_column :users, :vc_details, :string
     add_column :users, :MBTI, :string
