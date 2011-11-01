@@ -8,7 +8,7 @@ class Addcolumnstouser < ActiveRecord::Migration
     add_column :users, :webex_details, :string
     add_column :users, :vc_details, :string
     add_column :users, :MBTI, :string
-    add_column :users, :reputation, :number
+    add_column :users, :reputation, :integer
   end
 
   def down
