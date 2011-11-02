@@ -26,5 +26,14 @@ class Event < ActiveRecord::Base
   has_one :status
   has_one :timezone
   
+  #Eventually, this default scope will be removed
+  default_scope order('duration ASC')
+  
+  scope :filter, lambda { |low, high| where(:duration => low..high) }
+  
+  def self.low_high_durations
+    [minimum(:duration), maximum(:duration)]
+  end
+  
 end
 
