@@ -7,7 +7,7 @@ namespace :db do
     make_users
     make_microposts
     make_relationships
-    make_timezones
+    make_events
   end
 end
 
@@ -46,7 +46,8 @@ def make_relationships
   followers.each { |follower| follower.follow!(user) }
 end
 
-def make_timezones
-
-  
+def make_events
+  50.times do |n|
+    Event.create!(:title => Faker::Lorem.words(3).join, :duration => rand(5 * 100))
+  end
 end

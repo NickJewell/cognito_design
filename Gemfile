@@ -14,6 +14,9 @@ gem 'will_paginate'
 #Moving this gem out of the development group
 gem 'faker'
 
+#Needed for jqueryUI themes?
+gem "jquery-ui-themes", "~> 0.0.4"
+
 group :production do
   gem 'therubyracer'
 end
