@@ -2,13 +2,7 @@ class EventsController < ApplicationController
   
   def index
     @title = "All Events"
-    unless params[:low] && params[:high]
-      @events = Event.all
-    else
-      @events = Event.filter(params[:low], params[:high])
-    end
-    
-    @duration_range = Event.low_high_durations
+    @events = Event.paginate(:page => params[:page], :per_page => 10)
   end
   
   def show

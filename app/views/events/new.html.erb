@@ -1,0 +1,152 @@
+	
+	<script>
+	$(function() {
+		$( "#datepicker" ).datepicker({
+			changeMonth: true,
+			changeYear: true,
+			nextText: "",
+			prevText: ""
+		});
+		$( "#radio_size" ).buttonset();
+	});
+	</script>
+	<script>
+			$(function() {
+				var availableTags = [
+					"ActionScript",
+					"AppleScript",
+					"Asp",
+					"BASIC",
+					"C",
+					"C++",
+					"Clojure",
+					"COBOL",
+					"ColdFusion",
+					"Erlang",
+					"Fortran",
+					"Groovy",
+					"Haskell",
+					"Java",
+					"JavaScript",
+					"Lisp",
+					"Perl",
+					"PHP",
+					"Python",
+					"Ruby",
+					"Scala",
+					"Scheme"
+				];
+				function split( val ) {
+					return val.split( /,\s*/ );
+				}
+				function extractLast( term ) {
+					return split( term ).pop();
+				}
+
+				$( "#tags" )
+					// don't navigate away from the field on tab when selecting an item
+					.bind( "keydown", function( event ) {
+						if ( event.keyCode === $.ui.keyCode.TAB &&
+								$( this ).data( "autocomplete" ).menu.active ) {
+							event.preventDefault();
+						}
+					})
+					.autocomplete({
+						minLength: 0,
+						source: function( request, response ) {
+							// delegate back to autocomplete, but extract the last term
+							response( $.ui.autocomplete.filter(
+								availableTags, extractLast( request.term ) ) );
+						},
+						focus: function() {
+							// prevent value inserted on focus
+							return false;
+						},
+						select: function( event, ui ) {
+							var terms = split( this.value );
+							// remove the current input
+							terms.pop();
+							// add the selected item
+							terms.push( ui.item.value );
+							// add placeholder to get the comma-and-space at the end
+							terms.push( "" );
+							this.value = terms.join( ", " );
+							return false;
+						}
+					});
+			});
+		</script>
+
+
+<table summary="Data Entry for an Event" class="event_entry">
+	<tr>
+	  <td><ul>Event Title:</ul><ul><input type="text" id="event_title" size=75></ul></td>
+	  <td><ul>How Big?:</ul><ul><form>
+		<div id="radio_size">
+			<ul><input type="radio" id="size1" name="radio" /><label for="size1">Duet (1-on-1)</label></ul>
+			<ul><input type="radio" id="size2" name="radio" checked="checked" /><label for="size2">Huddle (2-9)</label></ul>
+			<ul><input type="radio" id="size3" name="radio" /><label for="size3">Performance (10-49)</label></ul>
+			<ul><input type="radio" id="size4" name="radio" /><label for="size4">Jamboree! (50+)</label></ul>
+		</div>
+	</form>
+	</ul></td>
+	  <td><ul>Delivered By?:</ul><ul><form>
+		<div id="radio_channel">
+			<ul><input type="radio" id="channel1" name="radio" /><label for="channel1">In Person</label></ul>
+			<ul><input type="radio" id="channel2" name="radio" checked="checked" /><label for="channel2">Phone/Conference</label></ul>
+			<ul><input type="radio" id="channel3" name="radio" /><label for="channel3">Webex</label></ul>
+			<ul><input type="radio" id="channel4" name="radio" /><label for="channel4">VC</label></ul>
+		</div>
+	</form></ul></td>	
+	</tr>
+	<tr>
+	  <td><ul>Description:</ul><ul><textarea id="event_content" ></textarea>
+	</ul></td>
+	  <td><ul>Difficulty?:</ul><ul><form>
+		<div id="radio_difficulty">
+			<ul><input type="radio" id="difficulty1" name="radio" checked="checked" /><label for="difficulty1">Beginner</label></ul>
+			<ul><input type="radio" id="difficulty2" name="radio" /><label for="difficulty2">Intermediate</label></ul>
+			<ul><input type="radio" id="difficulty3" name="radio" /><label for="difficulty3">Advanced</label></ul>
+		</div>
+	</form></ul></td>
+	  <td><ul>Timezone?:</ul><ul><form>
+		<div id="radio_timezone">
+			<ul><input type="radio" id="timezone1" name="radio" checked="checked" /><label for="timezone1">Asia-Pacific</label></ul>
+			<ul><input type="radio" id="timezone2" name="radio" /><label for="timezone2">India</label></ul>
+			<ul><input type="radio" id="timezone3" name="radio" /><label for="timezone3">Europe</label></ul>
+			<ul><input type="radio" id="timezone4" name="radio" /><label for="timezone4">Americas</label></ul>
+			<ul><input type="radio" id="timezone5" name="radio" /><label for="timezone5">Flexible</label></ul>
+		</div>
+	</form></ul></td>	
+	</tr>
+	<tr>
+	  <td><ul>Pre-Requisites:</ul><ul><textarea id="event_prereqs" rows="2" cols="10"></textarea></ul></td>
+	  <td><ul></ul><ul></ul></td>
+	  <td><ul>Status?:</ul><ul>
+		Under Creation</ul></td>	
+	</tr>
+	<tr>
+	  <td><ul>Tags:</ul><ul>	<div class="event_tags">
+			<label for="tags">Tag your event here (comma separated): </label>
+			<input id="tags" size="50" />
+		</div></ul></td>
+	  <td><ul></ul><ul></ul></td>
+	  <td><ul></ul><ul></ul></td>	
+	</tr>
+	<tr>
+	  <td><ul>When:</ul><ul> <div class="ui-datepicker-div"><input type="text" id="datepicker"></div></ul></td>
+	  <td><ul>Length?:</ul><ul><input type="text" id="event_length" size=5></ul></td>
+	  <td><ul></ul><ul></ul></td>	
+	</tr>
+	
+</table>
+
+<pre>
+	
+	
+	
+	
+	
+	
+	
+</pre>

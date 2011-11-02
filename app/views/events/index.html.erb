@@ -1,51 +1,9 @@
-	
-	<script>
-	$(function() {
-		$( "#datepicker" ).datepicker({
-			changeMonth: true,
-			changeYear: true,
-			nextText: "",
-			prevText: ""
-		});
+<h1>All Events</h1>
 
-	});
-	</script>
-	
-<table summary="Data Entry for an Event" class="event_entry">
-	<tr>
-	  <td><ul>Event Title:</ul><ul>test1b</ul></td>
-	  <td><ul>How Big?:</ul><ul>test2b</ul></td>
-	  <td><ul>Delivered By?:</ul><ul>test3b</ul></td>	
-	</tr>
-	<tr>
-	  <td><ul>Description:</ul><ul>test4b</ul></td>
-	  <td><ul>Difficulty?:</ul><ul>test5b</ul></td>
-	  <td><ul>Timezone?:</ul><ul>test6b</ul></td>	
-	</tr>
-	<tr>
-	  <td><ul>Pre-Requisites:</ul><ul>test7b</ul></td>
-	  <td><ul></ul><ul></ul></td>
-	  <td><ul>Status?:</ul><ul>test9b</ul></td>	
-	</tr>
-	<tr>
-	  <td><ul>Tags:</ul><ul>test10b</ul></td>
-	  <td><ul></ul><ul></ul></td>
-	  <td><ul></ul><ul></ul></td>	
-	</tr>
-	<tr>
-	  <td><ul>When:</ul><ul> <div class="ui-datepicker-div"><input type="text" id="datepicker"></div></ul></td>
-	  <td><ul></ul><ul></ul></td>
-	  <td><ul></ul><ul></ul></td>	
-	</tr>
-	
-</table>
-
-<pre>
-	
-	
-	
-	
-	
-	
-	
-</pre>
+<%= will_paginate %> 
+<ul class = "users">
+	<table summary="Index listing of events">
+	<%= render @events %>
+	</table>
+</ul>
+<%= will_paginate %> 

@@ -47,7 +47,7 @@ def make_relationships
 end
 
 def make_events
-  20.times do
-    Event.create(:title => Faker::Lorem.words(1).join, :duration => rand(5 * 100))
+  50.times do |n|
+    Event.create!(:title => Faker::Lorem.words(3).join, :duration => rand(5 * 100))
   end
 end
