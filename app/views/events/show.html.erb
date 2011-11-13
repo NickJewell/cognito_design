@@ -1,9 +1,11 @@
 <h1>All Events</h1>
 
-<%= will_paginate %> 
-
 <ul class = "users">
 	<%= render @events %>
-</ul>
+	<%= collection_select(:channel_name, :id, @channels, :id, :channel_name, options ={:prompt => "-Select a channel"}) %>
+	<%= collection_select(:difficulty_name, :id, @difficulties, :id, :difficulty_name, options ={:prompt => "-Select a Difficulty"}) %>
+	<%= collection_select(:size_name, :id, @sizes, :id, :size_name, options ={:prompt => "-Select a Size"}) %>
+	<%= collection_select(:status_name, :id, @statuses, :id, :status_name, options ={:prompt => "-Select a Status"}) %>
+	<%= collection_select(:timezone_name, :id, @timezones, :id, :timezone_name, options ={:prompt => "-Select a Timezone"}) %>
 
-<%= will_paginate %>
+</ul>
