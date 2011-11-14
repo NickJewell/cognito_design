@@ -1,6 +1,6 @@
-<h1>Let's create!</h1>
+<h1>Edit Event Details</h1>
 
- 	<%= form_for(@event) do |e| %>
+	<%= form_for(@event) do |e| %>
 	  <%= e.collection_select(:channel_id, @channels, :id, :channel_name, options ={:prompt => "-Select a channel"}) %>
 	  <%= e.collection_select(:difficulty_id, @difficulties, :id, :difficulty_name, options ={:prompt => "-Select a Difficulty"}) %>
 	  <%= e.collection_select(:size_id, @sizes, :id, :size_name, options ={:prompt => "-Select a Size"}) %>
@@ -10,9 +10,8 @@
 	  <%= e.text_area(:content) %>
 	  <%= datetime_select(e, :session_datetime, :default => 0.days.from_now) %>
 	  <%= e.text_field(:duration) %>
-	  <%= hidden_field_tag(:user_host_id, @current_user) %>
 
-  <div class="actions">
-      <%= e.submit "Create Event" %>
-  </div>
-     <% end %>
+<div class="actions">
+    <%= e.submit "Update Event" %>
+</div>
+   <% end %>
