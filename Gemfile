@@ -14,6 +14,9 @@ gem 'will_paginate'
 #Moving this gem out of the development group
 gem 'faker'
 
+#Trying acts_as_taggable_on_steroids for tagging purposes
+
+
 #Needed for jqueryUI themes?
 gem "jquery-ui-themes", "~> 0.0.4"
 
