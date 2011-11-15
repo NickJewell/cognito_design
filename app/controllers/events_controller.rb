@@ -1,4 +1,5 @@
 class EventsController < ApplicationController
+  before_filter :authenticate
   
   def index
     @title = "All Events"
@@ -11,9 +12,9 @@ class EventsController < ApplicationController
   
   def create
     #Need to pick up the current user for the user_host_id
-    @current_user = current_user
     @event = Event.new(params[:event])
-    
+    @event.user_host_id = current_user.id
+    #@event = current_user.event.build(params[:event])
     if @event.save
       redirect_to @event, :flash => { :success => "Event Created! "}
     else    
