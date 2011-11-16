@@ -10,7 +10,7 @@ Cognito1::Application.routes.draw do
 
   resources :users do
     member do
-      get :following, :followers  
+      get :following, :followers, :event_attendees
     end  
   end
   

@@ -11,7 +11,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111115225927) do
+ActiveRecord::Schema.define(:version => 20111116204009) do
+
+  create_table "attendees", :force => true do |t|
+    t.string   "attendee_flag"
+    t.string   "watch_flag"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
+    t.integer  "event_id"
+  end
 
   create_table "channels", :force => true do |t|
     t.string   "channel_name"
@@ -21,6 +30,15 @@ ActiveRecord::Schema.define(:version => 20111115225927) do
 
   create_table "difficulties", :force => true do |t|
     t.string   "difficulty_name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "event_attendees", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "event_id"
+    t.string   "attendee_flag"
+    t.string   "watch_flag"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

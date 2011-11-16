@@ -29,6 +29,9 @@ class User < ActiveRecord::Base
   
   has_many :followers, :through => :reverse_relationships, :source => :follower
   
+  has_many :attendees
+  has_many :events, :through => :attendees
+  
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   
   validates :name, :presence => true,
