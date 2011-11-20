@@ -1,3 +1,15 @@
 <li>
-  <tr><td>Title: <%= event.title %></td><td>  Duration: <%= event.duration %> mins.</td><td>  Content:  <%= event.content %></td></tr>
+  <tr><td>Title: <%= event.title %></td><td>  Duration: <%= event.duration %> mins.</td>
+	<% attendee = Attendee.find(:first, :conditions => ["event_id = ? and user_id = ?", event.id, current_user.id])%>
+	<% if(Attendee.count(:conditions => ["event_id = ? and user_id = ?", event.id, current_user.id]) < 1) %>
+	    <td><%= button_to 'Attend', attendees_path(:id => event.id) %></td></tr>	 
+	<% else %>
+	    <td>
+
+			<%= button_to "Remove Attendance", { :controller => :attendees, :action => "destroy", :id => event.id },
+			          :confirm => "Are you sure?", :method => :delete %>
+
+		  <%= debug attendee %>
+	  	</td></tr>
+	<% end %>
 </li>

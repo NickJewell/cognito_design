@@ -53,5 +53,9 @@ class EventsController < ApplicationController
       render 'edit'  
     end
   end
+  
+  def remove_attendee
+    raise "hello"
+  end
 
 end

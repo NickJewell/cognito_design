@@ -2,17 +2,25 @@ Cognito1::Application.routes.draw do
 
 
   resources :timezones
+  
   resources :events
+  
+  resources :attendees
+  
+  #resources :events
+  #resources :attendees
 
+  
   get "relationships/create"
 
   get "relationships/destroy"
 
   resources :users do
     member do
-      get :following, :followers, :event_attendees
+      get :following, :followers
     end  
   end
+  
   
   resources :sessions,   :only => [:new, :create, :destroy]
   resources :microposts, :only => [:create, :destroy]
