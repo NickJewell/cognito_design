@@ -25,7 +25,7 @@ class AttendeesController < ApplicationController
   def destroy
      @attendee = Attendee.find(:first, :conditions => ["event_id = ? and user_id = ?", @event.id, current_user.id])
      @attendee.destroy
-     redirect_to events_path, :flash => { :success => "Attendee Removed"}
+     redirect_to events_path, :flash => { :error => "Attendee Removed"}
    end
 
   
