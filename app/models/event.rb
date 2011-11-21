@@ -29,8 +29,8 @@ class Event < ActiveRecord::Base
   
   has_many :attendees
   has_many :users, :through => :attendees
-
   
+
   attr_accessible :channel_id, :difficulty_id, :status_id, :timezone_id, :size_id, :title, :content, :session_datetime, :duration, :prereqs
   
 end

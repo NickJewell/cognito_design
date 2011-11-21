@@ -51,6 +51,7 @@ module Cognito1
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
     # Adding jquery stuff 02/11
-    config.action_view.javascript_expansions[:defaults] = %w(jquery jquery-ui.min rails)
+    #config.action_view.javascript_expansions[:defaults] = %w(jquery jquery-ui.min rails)
+    config.action_view.JavaScript_expansions[:defaults] = %w(jquery rails application) 
   end
 end

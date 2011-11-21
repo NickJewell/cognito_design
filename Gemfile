@@ -14,12 +14,6 @@ gem 'will_paginate'
 #Moving this gem out of the development group
 gem 'faker'
 
-#Trying acts_as_taggable_on_steroids for tagging purposes
-
-
-#Needed for jqueryUI themes?
-gem "jquery-ui-themes", "~> 0.0.4"
-
 group :production do
   gem 'therubyracer'
 end
@@ -40,6 +34,7 @@ group :assets do
 end
 
 gem 'jquery-rails'
+
 gem 'annotate',  :git => 'git://github.com/ctran/annotate_models.git'
 
 # Use unicorn as the web server
