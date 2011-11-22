@@ -1,15 +1,37 @@
 <li>
-  <tr><td>Title: <%= event.title %></td><td>  Duration: <%= event.duration %> mins.</td>
+  <tr>
+	<td>Title: <%= event.title %></td>
+	<td>  Duration: <%= event.duration %> mins.</td>
+	
+	<% # Conditional logic to show Attendee button %>
+
 	<% attendee = Attendee.find(:first, :conditions => ["event_id = ? and user_id = ?", event.id, current_user.id])%>
 	<% if(Attendee.count(:conditions => ["event_id = ? and user_id = ?", event.id, current_user.id]) < 1) %>
-	    <td><%= button_to 'Attend', attendees_path(:id => event.id) %></td></tr>	 
+	<td><%= button_to 'Attend', attendees_path(:id => event.id) %></td>
+	
 	<% else %>
-	    <td>
-
-			<%= button_to "Remove Attendance", { :controller => :attendees, :action => "destroy", :id => event.id },
-			          :confirm => "Are you sure?", :method => :delete %>
-
-		  <%= debug attendee %>
-	  	</td></tr>
+	<td><%= button_to "Remove Attendance", { 	:controller => :attendees, 
+												:action => "destroy", :id => event.id },
+			          							:confirm => "Stop Attending?", 
+												:method => :delete %>
+ 												<%= debug attendee %></td>
+	
 	<% end %>
+	
+	<% # Conditional logic to show Watcher button %>
+	
+	<% watcher = Watcher.find(:first, :conditions => ["event_id = ? and user_id = ?", event.id, current_user.id])%>
+	<% if(Watcher.count(:conditions => ["event_id = ? and user_id = ?", event.id, current_user.id]) < 1) %>
+	<td><%= button_to 'Watch', watchers_path(:id => event.id) %></td>
+	
+	<% else %>
+	<td><%= button_to "Remove Watch", { 		:controller => :watchers, 
+												:action => "destroy", :id => event.id },
+			          							:confirm => "Remove Event Watch?", 
+												:method => :delete %>
+ 												<%= debug watcher %></td>
+	
+	<% end %>
+	
+	
 </li>
