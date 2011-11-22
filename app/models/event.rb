@@ -34,7 +34,13 @@ class Event < ActiveRecord::Base
   has_many :users, :through => :watchers
   
 
-  attr_accessible :channel_id, :difficulty_id, :status_id, :timezone_id, :size_id, :title, :content, :session_datetime, :duration, :prereqs
+  attr_accessible :user_host_id, :channel_id, :difficulty_id, :status_id, :timezone_id, :size_id, :title, :content, :session_datetime, :duration, :prereqs
+
+  class << self
+    def check_owner(host, user)
+      host == user ? true : false
+    end
+  end
   
 end
 

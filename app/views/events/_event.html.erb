@@ -1,6 +1,10 @@
 <li>
   <tr>
-	<td>Title: <%= event.title %></td>
+	<td><% if event.user_host_id == current_user.id %>
+	  <%= link_to "Edit", edit_event_path(event.id) %>
+	<% end %>
+	
+	Title: <%= link_to event.title, event_path(:id => event.id) %>
 	<td>  Duration: <%= event.duration %> mins.</td>
 	
 	<% # Conditional logic to show Attendee button %>
