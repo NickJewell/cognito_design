@@ -1,13 +1,14 @@
 Cognito1::Application.routes.draw do
 
-
-  
   resources :timezones
   
   resources :events
   
   resources :attendees
   resources :watchers
+  
+  #resources :tags
+  #resources :sessiontags
   
   #resources :events
   #resources :attendees

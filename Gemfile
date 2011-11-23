@@ -17,6 +17,9 @@ gem 'faker'
 #Trying out meta_search for search
 gem 'meta_search'
 
+#Trying out rocket_tag for tagging
+gem 'rocket_tag'
+
 group :production do
   gem 'therubyracer'
 end

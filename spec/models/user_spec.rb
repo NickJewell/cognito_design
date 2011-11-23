@@ -17,5 +17,14 @@ end
 #  encrypted_password :string(255)
 #  salt               :string(255)
 #  admin              :boolean         default(FALSE)
+#  staff_id           :string(255)
+#  city               :string(255)
+#  phone              :string(255)
+#  phone_alt          :string(255)
+#  conference_line    :string(255)
+#  webex_details      :string(255)
+#  vc_details         :string(255)
+#  MBTI               :string(255)
+#  reputation         :decimal(, )
 #
 

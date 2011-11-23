@@ -17,3 +17,13 @@ class Difficulty < ActiveRecord::Base
 end
 
 
+# == Schema Information
+#
+# Table name: difficulties
+#
+#  id              :integer         not null, primary key
+#  difficulty_name :string(255)
+#  created_at      :datetime
+#  updated_at      :datetime
+#
+

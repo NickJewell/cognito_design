@@ -33,6 +33,8 @@ class Event < ActiveRecord::Base
   has_many :watchers
   has_many :users, :through => :watchers
   
+  attr_taggable :tags
+  
 
   attr_accessible :user_host_id, :channel_id, :difficulty_id, :status_id, :timezone_id, :size_id, :title, :content, :session_datetime, :duration, :prereqs
 
