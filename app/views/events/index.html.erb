@@ -3,6 +3,13 @@
 <p>
 	
 </p>
+<p>
+	<%= form_for @search do |f| %>
+	    <%= f.label "Event Title contains: " %>
+		<%= f.text_field :title_contains %>
+		<%= f.submit "Search!" %>
+	<% end %>
+</p>
 <%= will_paginate %> 
 <ul class = "users">
 	<table summary="Index listing of events">

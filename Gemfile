@@ -14,6 +14,9 @@ gem 'will_paginate'
 #Moving this gem out of the development group
 gem 'faker'
 
+#Trying out meta_search for search
+gem 'meta_search'
+
 group :production do
   gem 'therubyracer'
 end
