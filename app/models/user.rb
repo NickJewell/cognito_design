@@ -44,6 +44,8 @@ class User < ActiveRecord::Base
   has_many :watchers
   has_many :events, :through => :watchers
   
+  has_many :resources
+  
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   
   validates :name, :presence => true,

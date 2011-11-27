@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111123224147) do
+ActiveRecord::Schema.define(:version => 20111127115559) do
 
   create_table "attendees", :force => true do |t|
     t.string   "attendee_flag"
@@ -39,6 +39,13 @@ ActiveRecord::Schema.define(:version => 20111123224147) do
     t.integer  "event_id"
     t.string   "attendee_flag"
     t.string   "watch_flag"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "event_resources", :force => true do |t|
+    t.integer  "event_id"
+    t.integer  "resource_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -77,6 +84,15 @@ ActiveRecord::Schema.define(:version => 20111123224147) do
 
   add_index "relationships", ["followed_id"], :name => "index_relationships_on_followed_id"
   add_index "relationships", ["follower_id"], :name => "index_relationships_on_follower_id"
+
+  create_table "resources", :force => true do |t|
+    t.string   "ext_int_indicator"
+    t.string   "resource_url"
+    t.string   "resource_description"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "sizes", :force => true do |t|
     t.string   "size_name"

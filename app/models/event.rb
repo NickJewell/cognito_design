@@ -33,6 +33,9 @@ class Event < ActiveRecord::Base
   has_many :watchers
   has_many :users, :through => :watchers
   
+  has_many :event_resources
+  has_many :resources, :through => :event_resources
+  
   attr_taggable :tags
   
 

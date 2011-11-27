@@ -1,0 +1,29 @@
+<h1>Add a Resource</h1>
+
+	<%= form_for(@resource) do |r| %>
+	<table>
+	  <tr>
+		<td><%= r.label("Resource Internal/External :") %></td>
+		<td><%= r.label(:ext, "An External Resource") %>
+	        <%= r.radio_button(:ext_int_indicator, "External", :checked => true) %>
+		    <%= r.label(:int, "An Internal Resource") %>
+		    <%= r.radio_button(:ext_int_indicator, "Internal") %></td>
+      </tr>
+
+	  <tr>
+	    <td><%= r.label("Resource Info :") %></td>
+	    <td><%= r.text_field(:resource_description) %></td>
+	  </tr>
+	
+	  <tr>
+	    <td><%= r.label("Resource URL :") %></td>
+	    <td><%= r.url_field(:resource_url) %></td>
+	  </tr>
+	</table>
+
+
+<div class="actions">
+    <%= r.submit "Create Resource" %>
+</div>
+
+   <% end %>

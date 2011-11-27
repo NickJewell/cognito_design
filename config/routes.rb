@@ -7,6 +7,15 @@ Cognito1::Application.routes.draw do
   resources :attendees
   resources :watchers
   
+  resources :resources
+  resources :event_resources
+  
+  resources :events do
+    member do
+      get :resources
+    end  
+  end
+  
   #resources :tags
   #resources :sessiontags
   
