@@ -33,10 +33,13 @@ class Event < ActiveRecord::Base
   has_many :watchers
   has_many :users, :through => :watchers
   
-  has_many :event_resources
-  has_many :resources, :through => :event_resources
+  has_many :resources
+  
+  accepts_nested_attributes_for :resources
   
   attr_taggable :tags
+  
+  acts_as_voteable
   
 
   attr_accessible :user_host_id, :channel_id, :difficulty_id, :status_id, :timezone_id, :size_id, :title, :content, :session_datetime, :duration, :prereqs

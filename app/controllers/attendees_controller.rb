@@ -33,11 +33,34 @@ class AttendeesController < ApplicationController
     @attendee = Attendee.find(:first, :conditions => ["event_id = ? and user_id = ?", @event.id, current_user.id])
   end
   
+  def add_vote
+    @event = Event.find(params[:id])
+    @user = User.find(current_user.id)
+    if(@event.votes_for > 0)
+      redirect_to events_path, :flash => { :error => "Vote Already Cast"}
+    else
+      @user.vote_exclusively_for(@event)
+      redirect_to events_path, :flash => { :success => "Vote Added - Thanks!"}
+   end
+  end
+  
+  def remove_vote
+    @event = Event.find(params[:id])
+    @user = User.find(current_user.id)
+    if(@event.votes_for > 0)
+        @user.vote_exclusively_against(@event)
+       redirect_to events_path, :flash => { :error => "Vote Removed"}
+    else
+      redirect_to events_path, :flash => { :error => "Something's Wrong - can't remove vote?!"}
+    end
+  end
   
   private 
   
   def load_event
     @event = Event.find( params[:id] )
   end
+  
+
   
 end

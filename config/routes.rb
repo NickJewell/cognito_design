@@ -5,16 +5,21 @@ Cognito1::Application.routes.draw do
   resources :events
   
   resources :attendees
+  
+  match "attendees/add_vote", :to => 'attendees#add_vote'
+  match "attendees/remove_vote", :to => 'attendees#remove_vote'
+  
   resources :watchers
   
   resources :resources
-  resources :event_resources
+  #resources :event_resources
   
   resources :events do
     member do
       get :resources
     end  
   end
+  
   
   #resources :tags
   #resources :sessiontags

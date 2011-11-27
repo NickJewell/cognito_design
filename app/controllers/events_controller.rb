@@ -9,8 +9,8 @@ class EventsController < ApplicationController
   
   def show
     @events             = Event.find(params[:id])
-    @eventresources     = EventResource.find_by_event_id(params[:id])
-    @resources          = Resource.find(@eventresources.resource_id)
+    #@eventresources     = EventResource.find_by_event_id(params[:id])
+    #@resources          = Resource.find(@eventresources.resource_id)
   end
   
   def create
@@ -58,7 +58,8 @@ class EventsController < ApplicationController
   end
 
   def resources
-    @resources = Resource.find(params[:id])
+    @resources = Event.find(params[:id]).resources
+    render 'resources/show' 
   end
 
 

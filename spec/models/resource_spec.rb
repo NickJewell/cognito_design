@@ -14,5 +14,6 @@ end
 #  user_id              :integer
 #  created_at           :datetime
 #  updated_at           :datetime
+#  event_id             :integer
 #
 

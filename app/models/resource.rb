@@ -10,14 +10,14 @@ class Resource < ActiveRecord::Base
   #  user_id              :integer
   #  created_at           :datetime
   #  updated_at           :datetime
+  #  event_id             :integer
   #
+
 
   
     belongs_to :user,:foreign_key => 'user_id'
-    
-    has_many :events
-    has_many :events, :through => :event_resources
-    
-    
+    belongs_to :event, :foreign_key => 'event_id'
+      
 end
+
 

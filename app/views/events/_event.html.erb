@@ -37,5 +37,19 @@
 	
 	<% end %>
 	
+	<% if(Attendee.count(:conditions => ["event_id = ? and user_id = ?", event.id, current_user.id]) >= 1) %>
+	  <% if(event.votes_for > 0) %>
+	    <td><%= button_to "Remove Vote", { 	            :controller => :attendees, 
+														:action => "remove_vote", :id => event.id } %></td>
+	  <% else %>
+	  	<td><%= button_to "+1", { 	            :controller => :attendees, 
+													:action => "add_vote", :id => event.id } %></td>
+	  <% end %>
+	
+	<% end %>
+
+	
+	</tr>
+	
 	
 </li>

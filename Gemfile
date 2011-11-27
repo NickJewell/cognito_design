@@ -20,6 +20,15 @@ gem 'meta_search'
 #Trying out rocket_tag for tagging
 gem 'rocket_tag'
 
+#Trying out Nested Form
+gem 'nested_form'
+
+#Trying out formtastic
+gem 'formtastic'
+
+#Trying out thumbs_up
+gem 'thumbs_up'
+
 group :production do
   gem 'therubyracer'
 end

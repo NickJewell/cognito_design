@@ -46,6 +46,8 @@ class User < ActiveRecord::Base
   
   has_many :resources
   
+  acts_as_voter
+  
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   
   validates :name, :presence => true,
