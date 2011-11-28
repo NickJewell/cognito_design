@@ -1,0 +1,17 @@
+#Cognito
+=======
+
+>Share It!
+
+### Overview
+
+Cognito is a prototype Web Application for democratising the way that peer-to-peer mentoring occurs in
+large-scale organisations. 
+
+Rather than only consuming mandated training in a top-down cascading fashion, Cognito offers the chance 
+for ANYONE to give mentorship to ANYONE on ANY SUBJECT. By opening up staff skills in this way, it's
+hoped that knowledge will flourish in large organisations (as well as significantly reducing the formal
+training budgets and bloated offerings from vendors and training companies.)
+
+The following will be fleshed out with a breakdown of the app structure in Rails 3.1 as best as possible.
+
