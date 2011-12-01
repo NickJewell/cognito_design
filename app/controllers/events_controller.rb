@@ -1,5 +1,6 @@
 class EventsController < ApplicationController
   before_filter :authenticate
+
   
   def index
     @title = "All Events"
@@ -56,11 +57,42 @@ class EventsController < ApplicationController
       render 'edit'  
     end
   end
+  
+  def destroy
+    Event.find(params[:id]).destroy
+    redirect_to events_path, :flash => { :error => "Event Destroyed."}
+  end
 
   def resources
     @resources = Event.find(params[:id]).resources
     render 'resources/show' 
   end
-
-
+  
+  def hosting
+    require 'will_paginate/array'
+    @title = "Hosting"
+    @event = Event.find_all_by_user_host_id(current_user.id)
+    @events = @event.paginate(:page => params[:page], :per_page => 10)
+    render 'event_hosting'
+  end
+  
+  def watching
+    require 'will_paginate/array'
+    @title = "Watching"
+    conditions = ['watchers.user_id = ?', current_user.id]
+    @event = Event.joins(:watchers).find(:all, :conditions => conditions)
+    @events = @event.paginate(:page => params[:page], :per_page => 10)
+    render 'event_watching'
+  end
+  
+  def attending
+    require 'will_paginate/array'
+    @title = "Attending"
+    conditions = ['attendees.user_id = ?', current_user.id]
+    @event = Event.joins(:attendees).find(:all, :conditions => conditions)
+    @events = @event.paginate(:page => params[:page], :per_page => 10)
+    render 'event_attending'
+  end
+    
+  
 end
