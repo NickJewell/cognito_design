@@ -6,4 +6,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require ./hoverIntent.js
+//= require ./jquery.dropdown.js
+//= require ./jquery.dropdownPlain.js
 //= require_tree .
