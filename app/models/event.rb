@@ -35,20 +35,31 @@ class Event < ActiveRecord::Base
   
   has_many :resources
   
+  #has_many :tags
+  #has_many :tags, :through => :event_tags
+  
   accepts_nested_attributes_for :resources
   
-  attr_taggable :tags
+  acts_as_taggable_on :tags
   
   acts_as_voteable
   
 
-  attr_accessible :user_host_id, :channel_id, :difficulty_id, :status_id, :timezone_id, :size_id, :title, :content, :session_datetime, :duration, :prereqs
+  attr_accessible :tag_list, :event_tokens, :user_host_id, :channel_id, :difficulty_id, :status_id, :timezone_id, :size_id, :title, :content, :session_datetime, :duration, :prereqs
+  attr_reader :event_tokens
 
   class << self
     def check_owner(host, user)
       host == user ? true : false
     end
   end
+  
+  def event_tokens=(ids)
+       ids.gsub!(/CREATE_(.+?)_END/) do
+         Tag.create!(:name => $1).id
+       end
+
+     end
   
 end
 

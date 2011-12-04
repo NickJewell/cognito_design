@@ -14,4 +14,17 @@ class Vote < ActiveRecord::Base
   # Comment out the line below to allow multiple votes per user.
   validates_uniqueness_of :voteable_id, :scope => [:voteable_type, :voter_type, :voter_id]
 
-end
+end# == Schema Information
+#
+# Table name: votes
+#
+#  id            :integer         not null, primary key
+#  vote          :boolean         default(FALSE)
+#  voteable_id   :integer         not null
+#  voteable_type :string(255)     not null
+#  voter_id      :integer
+#  voter_type    :string(255)
+#  created_at    :datetime
+#  updated_at    :datetime
+#
+

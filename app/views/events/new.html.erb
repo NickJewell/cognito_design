@@ -10,6 +10,10 @@
 	  <%= e.text_area(:content) %>
 	  <%= datetime_select(e, :session_datetime, :default => 0.days.from_now) %>
 	  <%= e.text_field(:duration) %>
+	  <%= e.label :tag_list, "Event Tags" %><br />
+	  <%= e.text_field :tag_list,
+	                 :id => "event_tags",
+	                 "data-pre" => @event.tags.map(&:attributes).to_json %>
 
   <div class="actions">
       <%= e.submit "Create Event" %>

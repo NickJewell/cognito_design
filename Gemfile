@@ -18,7 +18,10 @@ gem 'faker'
 gem 'meta_search'
 
 #Trying out rocket_tag for tagging
-gem 'rocket_tag'
+#gem 'rocket_tag'
+
+#Trying out acts_as_taggable_on for better tagging
+gem 'acts-as-taggable-on'
 
 #Trying out Nested Form
 gem 'nested_form'

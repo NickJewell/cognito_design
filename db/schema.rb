@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111127221716) do
+ActiveRecord::Schema.define(:version => 20111204150742) do
 
   create_table "attendees", :force => true do |t|
     t.string   "attendee_flag"
@@ -46,6 +46,13 @@ ActiveRecord::Schema.define(:version => 20111127221716) do
   create_table "event_resources", :force => true do |t|
     t.integer  "event_id"
     t.integer  "resource_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "event_tags", :force => true do |t|
+    t.integer  "event_id"
+    t.integer  "tag_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
