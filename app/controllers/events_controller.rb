@@ -122,7 +122,8 @@ class EventsController < ApplicationController
                             :joins  => 'INNER JOIN events on votes.voteable_id = events.id',
                             :group  => 'events.id, events.title',
                             :limit  => 10,
-                            :order  => 'count(votes.id) DESC')
+                            :order  => 'count(votes.id) DESC',
+                            :conditions => ["vote = ?", true])
   end
   
   def popular_tags

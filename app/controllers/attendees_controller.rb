@@ -47,7 +47,7 @@ class AttendeesController < ApplicationController
   def remove_vote
     @event = Event.find(params[:id])
     @user = User.find(current_user.id)
-    if(@event.votes_for > 0)
+    if(@user.voted_for? @event )
         @user.vote_exclusively_against(@event)
        redirect_to events_path, :flash => { :error => "Vote Removed"}
     else
