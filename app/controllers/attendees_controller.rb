@@ -36,7 +36,7 @@ class AttendeesController < ApplicationController
   def add_vote
     @event = Event.find(params[:id])
     @user = User.find(current_user.id)
-    if(@event.votes_for > 0)
+    if(@user.voted_for? @event )
       redirect_to events_path, :flash => { :error => "Vote Already Cast"}
     else
       @user.vote_exclusively_for(@event)

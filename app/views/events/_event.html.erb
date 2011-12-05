@@ -47,7 +47,9 @@
 	  <% end %>
 	
 	  <% if(Attendee.count(:conditions => ["event_id = ? and user_id = ?", event.id, current_user.id]) >= 1) %>
-	    <% if(event.votes_for > 0) %>
+	    <% @user = User.find(current_user.id) %>
+	    <% @ev   = Event.find(event.id) %>
+	    <% if(@user.voted_for? @ev ) %>
 	      <td><%= button_to "Remove Vote", { 	            :controller => :attendees, 
 														:action => "remove_vote", :id => event.id } %></td>
 	    <% else %>

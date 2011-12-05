@@ -10,8 +10,15 @@ class EventsController < ApplicationController
   
   def index
     @title = "All Events"
+    @user = User.find(current_user.id)
     @search = Event.search(params[:search])
     @events = @search.paginate(:page => params[:page], :per_page => 10)
+  end
+  
+  def vote_check(ev_id)
+    @user = User.find(current_user.id)
+    @event = Event.find(ev_id)
+    @user.voted_for? @event
   end
   
   def show
@@ -100,6 +107,8 @@ class EventsController < ApplicationController
     render 'event_attending'
   end
     
-
+  def popular
+    @title = "Popular"
+  end
   
 end
