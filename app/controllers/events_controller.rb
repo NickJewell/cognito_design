@@ -128,12 +128,22 @@ class EventsController < ApplicationController
   
   def popular_tags
     @title = "Popular Tags"
+    # SQLite version
+    #@top_tags =   Tag.find( :all,
+    #                        :select => 'tags.name, count(tags.id) as tag_count',
+    #                        :joins  => 'INNER JOIN taggings on tags.id = taggings.tag_id, events on taggings.taggable_id = events.id',
+    #                        :group  => 'tags.name',
+    #                        :limit  => 10,
+    #                        :order  => 'count(tags.id) DESC')
+    # Postgres version
     @top_tags =   Tag.find( :all,
                             :select => 'tags.name, count(tags.id) as tag_count',
-                            :joins  => 'INNER JOIN taggings on tags.id = taggings.tag_id, events on taggings.taggable_id = events.id',
+                            :joins  => ',taggings, events',
                             :group  => 'tags.name',
                             :limit  => 10,
-                            :order  => 'count(tags.id) DESC')
+                            :order  =>'count(tags.id) DESC', 
+                            :conditions => 'tags.id=taggings.tag_id and taggings.taggable_id = events.id')
+                            
   end
   
 end
