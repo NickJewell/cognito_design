@@ -2,7 +2,10 @@ Cognito1::Application.routes.draw do
 
   resources :timezones
 
-  get "popular" => "events#popular", :as => :popular
+  match "popular/events", :to => "events#popularevents"
+  match "popular/tags", :to => "events#popular_tags"
+  
+  get "events/tagsearch" => "events#tagsearch", :as => :tagsearch
 
   get "events/tags" => "events#tags", :as => :tags
 

@@ -10,5 +10,12 @@ class PagesController < ApplicationController
   def contact
     @title = "Contact"
   end
-
+  
+  def popular
+    redirect_to '/popular/events/'
+  end
+  
+  def popular_tags
+    redirect_to '/popular/tags/'
+  end
 end

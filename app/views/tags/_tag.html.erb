@@ -1,3 +1,4 @@
 <tr>
-  <td><%= tag.name %></td>
+  <td><%= link_to tag.name, {:controller => :events, :action => :tagsearch, :tags => tag.name}  %></td>
+  <td><%= tag.tag_count %></td>
 </tr>

@@ -9,9 +9,17 @@ class EventsController < ApplicationController
   end
   
   def index
+    require 'will_paginate/array'
     @title = "All Events"
     @user = User.find(current_user.id)
     @search = Event.search(params[:search])
+    @events = @search.paginate(:page => params[:page], :per_page => 10)
+  end
+  
+  def tagsearch
+    require 'will_paginate/array'
+    @title = "Tag Searched Events"
+    @search = Event.tagged_with(params[:tags])
     @events = @search.paginate(:page => params[:page], :per_page => 10)
   end
   
@@ -107,8 +115,24 @@ class EventsController < ApplicationController
     render 'event_attending'
   end
     
-  def popular
-    @title = "Popular"
+  def popularevents
+    @title = "Popular Events"
+    @top_events = Vote.find(:all,
+                            :select => 'events.id, events.title, count(votes.id) as vote_count',
+                            :joins  => 'INNER JOIN events on votes.voteable_id = events.id',
+                            :group  => 'events.id, events.title',
+                            :limit  => 10,
+                            :order  => 'count(votes.id) DESC')
+  end
+  
+  def popular_tags
+    @title = "Popular Tags"
+    @top_tags =   Tag.find( :all,
+                            :select => 'tags.name, count(tags.id) as tag_count',
+                            :joins  => 'INNER JOIN taggings on tags.id = taggings.tag_id, events on taggings.taggable_id = events.id',
+                            :group  => 'tags.name',
+                            :limit  => 10,
+                            :order  => 'count(tags.id) DESC')
   end
   
 end
