@@ -1,21 +1,38 @@
-<h1>Let's create!</h1>
+	<h1>Let's create!</h1>
 
- 	<%= form_for(@event) do |e| %>
-	  <%= e.collection_select(:channel_id, @channels, :id, :channel_name, options ={:prompt => "-Select a channel"}) %>
-	  <%= e.collection_select(:difficulty_id, @difficulties, :id, :difficulty_name, options ={:prompt => "-Select a Difficulty"}) %>
-	  <%= e.collection_select(:size_id, @sizes, :id, :size_name, options ={:prompt => "-Select a Size"}) %>
-	  <%= e.collection_select(:status_id, @statuses, :id, :status_name, options ={:prompt => "-Select a Status"}) %>
-	  <%= e.collection_select(:timezone_id, @timezones, :id, :timezone_name, options ={:prompt => "-Select a Timezone"}) %>
-      <%= e.text_field(:title) %>
-	  <%= e.text_area(:content) %>
-	  <%= datetime_select(e, :session_datetime, :default => 0.days.from_now) %>
-	  <%= e.text_field(:duration) %>
-	  <%= e.label :tag_list, "Event Tags" %><br />
-	  <%= e.text_field :tag_list,
-	                 :id => "event_tags",
-	                 "data-pre" => @event.tags.map(&:attributes).to_json %>
+	 	<%= form_for(@event) do |e| %>
+		  <%= e.collection_select(:channel_id, @channels, :id, :channel_name, options ={:prompt => "-Select a channel"}) %>
+		  <%= e.collection_select(:difficulty_id, @difficulties, :id, :difficulty_name, options ={:prompt => "-Select a Difficulty"}) %>
+		  <%= e.collection_select(:size_id, @sizes, :id, :size_name, options ={:prompt => "-Select a Size"}) %>
+		  <%= e.collection_select(:status_id, @statuses, :id, :status_name, options ={:prompt => "-Select a Status"}) %>
+		  <%= e.collection_select(:timezone_id, @timezones, :id, :timezone_name, options ={:prompt => "-Select a Timezone"}) %>
+	      <%= e.text_field(:title) %>
+          <%= e.text_area(:content) %>
+		  <%= e.text_field(:session_datetime, :class => "datepicker") %>
+		  <%= e.text_field(:duration) %>
+		  <%= e.label :tag_list, "Event Tags" %><br />
+		  <%= e.text_field :tag_list,
+		                 :id => "event_tags",
+		                 "data-pre" => @event.tags.map(&:attributes).to_json %>
 
-  <div class="actions">
-      <%= e.submit "Create Event" %>
-  </div>
-     <% end %>
+		
+
+	  	
+
+						
+
+	  <div class="actions">
+	      <%= e.submit "Create Event" %>
+	  </div>
+	     <% end %>
+	
+			<p>
+				<label for="amount">Maximum price:</label>
+				<input type="text" id="amount" style="border:0; color:#f6931f; font-weight:bold;" />
+			</p>
+			<div class="demo">
+
+			<div id="slider"></div>
+
+			</div>
+	
