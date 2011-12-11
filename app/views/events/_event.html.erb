@@ -9,9 +9,10 @@
 	<td><% if event.user_host_id == current_user.id %>
 	  <%= link_to "Edit", edit_event_path(event.id) %>
 	<% end %>
-	
+	</td>
+	<td>
 	<%= link_to event.title, event_path(:id => event.id) %>
-	<td>  <%= event.duration %> mins.</td>
+	</td><td>  <%= event.duration %> mins.</td>
 	
 	<% # Conditional logic to show Attendee button %>
 
@@ -60,6 +61,7 @@
 	  <% end %>
     
     <% end %>
-	
+
+
 	</tr>
 

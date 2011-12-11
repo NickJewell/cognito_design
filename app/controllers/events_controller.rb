@@ -146,4 +146,13 @@ class EventsController < ApplicationController
                             
   end
   
+  def tagsearch_results
+    require 'will_paginate/array'
+    @search = Event.search(params[:tagsearch])
+    @events = Event.tagged_with("#{params[:tagsearch]}").paginate(:page => params[:page], :per_page => 10)
+    Event.metasearch({:title_or_content_or_tag_taggings_tag_name_contains => params[:search]})
+    render 'index'
+    
+  end
+  
 end

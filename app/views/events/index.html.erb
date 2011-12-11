@@ -5,11 +5,12 @@
 </p>
 <p>
 	<%= form_for @search do |f| %>
-	    <%= f.label "Event Title contains: " %>
-		<%= f.text_field :title_contains %>
+	    <%= f.label "Event Title/Content/Tags contains: " %>
+		<%= f.text_field :title_or_content_or_tag_taggings_tag_name_contains %>
 		<%= f.submit "Search!" %>
 	<% end %>
 </p>
+
 <%= will_paginate %> 
 <%= render 'eventlist_header' %>
 <%= render @events %>
