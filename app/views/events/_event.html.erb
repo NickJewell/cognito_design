@@ -1,5 +1,5 @@
-<li>
-  <tr>
+
+
 	<td><% if event.user_host_id == current_user.id %>
 	  <%= button_to "Delete", {  		:controller => :events,
 										:action 	=> "destroy", :id => event.id },
@@ -10,8 +10,8 @@
 	  <%= link_to "Edit", edit_event_path(event.id) %>
 	<% end %>
 	
-	Title: <%= link_to event.title, event_path(:id => event.id) %>
-	<td>  Duration: <%= event.duration %> mins.</td>
+	<%= link_to event.title, event_path(:id => event.id) %>
+	<td>  <%= event.duration %> mins.</td>
 	
 	<% # Conditional logic to show Attendee button %>
 
@@ -27,7 +27,7 @@
 												:action => "destroy", :id => event.id },
 			          							:confirm => "Stop Attending?", 
 												:method => :delete %>
- 												<%= debug attendee %></td>
+ 		</td>
 	
 	  <% end %>
 	
@@ -42,7 +42,7 @@
 												:action => "destroy", :id => event.id },
 			          							:confirm => "Remove Event Watch?", 
 												:method => :delete %>
- 												<%= debug watcher %></td>
+ 		</td>
 	
 	  <% end %>
 	
@@ -62,6 +62,4 @@
     <% end %>
 	
 	</tr>
-	
-	
-</li>
+

@@ -11,9 +11,8 @@
 	<% end %>
 </p>
 <%= will_paginate %> 
-<ul class = "users">
-	<table summary="Index listing of events">
-	<%= render @events %>
-	</table>
+<%= render 'eventlist_header' %>
+<%= render @events %>
+</table>
 </ul>
 <%= will_paginate %> 

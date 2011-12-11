@@ -10,6 +10,6 @@ module ApplicationHelper
   end
   
   def logo
-    image_tag("Cognito_Logo.jpg", :alt => "Cognito App", :class => "round", :size => "400x200")
+    image_tag("Cognito_Logo.jpg", :alt => "Cognito App", :class => "round", :size => "200x100")
   end
 end

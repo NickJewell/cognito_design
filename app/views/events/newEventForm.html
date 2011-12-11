@@ -1,7 +1,9 @@
-	<h1>Let's create!</h1>
+<html>
 
-	 	<%= form_for(@event) do |e| %>
+<head>
+</head>
 
+<body>
 	<div id="tabs" class="ui-tabs ui-widget ui-widget-content ui-corner-all">
 		<ul>
 			<li><a href="#tabs-1" class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">Core Event</a>
@@ -11,7 +13,7 @@
 			<li><a href="#tabs-3" class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">Extras</a>
 			</li>
 		</ul>
-
+	
 	<div id="tabs-1" class="ui-tabs-panel ui-widget-content ui-corner-bottom">
 		<div id="stylized" class="myform">
 			<form id="form" name="form" method="post" action="index.html">
@@ -20,17 +22,16 @@
 				<label>Title:
 					<span class="small">Pick a Snappy One!</span>
 				</label>
-				<input type = "text" class ="title" name = "event_title" id="event_title" />
-
+				<input type = "text" name = "event_title" id="event_title" />
 				<label>Date:
 					<span class="small">Pick your date:</span>
 				</label>
 				<input type="text" id="datepicker"></p>
-
+				
 				<label>Content: 
 					<span class="small">Add some flavour!</span>
 				</label>
-
+				
 				<textarea name="styled-textarea" id="styled" onfocus="this.value=''; setbg('#e5fff3);" onblur="setbg('white')">Event Content here...
 				</textarea>
 
@@ -41,7 +42,7 @@
 		<a class="nexttab" href="#">Next ></a>
 		</div>
 	</div>
-
+	
 	<div id="tabs-2" class ="ui-tabs-panel ui-widget-content ui-corner-bottom">
 		<div id="stylized" class="myform" >
 			<h1>Meeting Configuration</h1>
@@ -50,9 +51,9 @@
 			</label>
 			<input type="text" id="duration" style="border: 0; color: #f6931f; font-weight: bold;" />
 			<p>
-
+				
 			</p>
-
+			
 			<div id="slider" class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all">
 				<a style="left: 0%;" class="ui-slider-handle ui-state-default ui-corner-all" href="#"></a>
 			</div>
@@ -60,29 +61,12 @@
 		<a class="nexttab" href="#">Next ></a>
 		</div>
 	</div>
-
+	
 	<div id="tabs-3" class="ui-tabs-panel ui-widget-content ui-corner-bottom">
 		<a class="prevtab" href="#">< Prev</a>
 	</div>
 </div>
 
-
-		  <%= e.collection_select(:channel_id, @channels, :id, :channel_name, options ={:prompt => "-Select a channel"}) %>
-		  <%= e.collection_select(:difficulty_id, @difficulties, :id, :difficulty_name, options ={:prompt => "-Select a Difficulty"}) %>
-		  <%= e.collection_select(:size_id, @sizes, :id, :size_name, options ={:prompt => "-Select a Size"}) %>
-		  <%= e.collection_select(:status_id, @statuses, :id, :status_name, options ={:prompt => "-Select a Status"}) %>
-		  <%= e.collection_select(:timezone_id, @timezones, :id, :timezone_name, options ={:prompt => "-Select a Timezone"}) %>
-	      <%= e.text_field(:title) %>
-          <%= e.text_area(:content) %>
-		  <%= e.text_field(:session_datetime, :class => "datepicker") %>
-		  <%= e.text_field(:duration) %>
-		  <%= e.label :tag_list, "Event Tags" %><br />
-		  <%= e.text_field :tag_list,
-		                 :id => "event_tags",
-		                 "data-pre" => @event.tags.map(&:attributes).to_json %>
-
-	  <div class="actions">
-	      <%= e.submit "Create Event" %>
-	  </div>
-	     <% end %>
-
+</body>
+</html>
+		
