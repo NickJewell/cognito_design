@@ -1,21 +1,42 @@
 <h1>Edit Event Details</h1>
+<%= form_for(@event) do |e| %>
+  <%= e.label :title, "Title" %> : <%= e.text_field(:title) %></td>	
+  </tr>
+  <tr>
+    <td><%= e.label :title, "Content" %> : <%= e.text_area :content, :cols => "3", :rows => "1" %></td>	
+  </tr>
+  <tr>
+    <td><%= e.label :title, "Event Date" %> :<%= e.text_field(:session_datetime, :class => "datepicker") %></td>	
+  </tr>
+  <tr>
+    <td>
+	  <fieldset>
+		  <%= e.collection_select(:channel_id, @channels, :id, :channel_name, options ={:prompt => "-Select a channel"}) %>
+		  <%= e.collection_select(:difficulty_id, @difficulties, :id, :difficulty_name, options ={:prompt => "-Select a Difficulty"}) %>
+		  <%= e.collection_select(:size_id, @sizes, :id, :size_name, options ={:prompt => "-Select a Size"}) %>
+		  <%= e.collection_select(:status_id, @statuses, :id, :status_name, options ={:prompt => "-Select a Status"}) %>
+		  <%= e.collection_select(:timezone_id, @timezones, :id, :timezone_name, options ={:prompt => "-Select a Timezone"}) %>
+	 </fieldset>
+	</td>
+</tr>
 
-	<%= form_for(@event) do |e| %>
-	  <%= e.collection_select(:channel_id, @channels, :id, :channel_name, options ={:prompt => "-Select a channel"}) %>
-	  <%= e.collection_select(:difficulty_id, @difficulties, :id, :difficulty_name, options ={:prompt => "-Select a Difficulty"}) %>
-	  <%= e.collection_select(:size_id, @sizes, :id, :size_name, options ={:prompt => "-Select a Size"}) %>
-	  <%= e.collection_select(:status_id, @statuses, :id, :status_name, options ={:prompt => "-Select a Status"}) %>
-	  <%= e.collection_select(:timezone_id, @timezones, :id, :timezone_name, options ={:prompt => "-Select a Timezone"}) %>
-      <%= e.text_field(:title) %>
-	  <%= e.text_area(:content) %>
-      <%= e.text_field(:session_datetime, :class => "datepicker", :value => @event.session_datetime.strftime("%d %B %Y")) %>
-	  <%= e.text_field(:duration) %>
-	  <%= e.label :tag_list, "Event Tags" %><br />
-	  <%= e.text_field :tag_list,
-	                 :id => "event_tags",
-	                 "data-pre" => @event.tags.map(&:attributes).to_json %>
+ <tr>
+    <td>
+	  <fieldset>
+		  <%= e.label :duration, "Event Duration (mins)" %> :
+		  <input type="text" id="duration" style="border: 0; color: #f6931f; font-weight: bold;"  name="event[duration]"/>
+		  <div id="slider" class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all" name="event[duration]">
+			<a style="left: 0%;" class="ui-slider-handle ui-state-default ui-corner-all" href="#"></a>
+		</div>
+		<%= e.label :tag_list, "Event Tags" %><br />
+		<%= e.text_field :tag_list,
+		                 :id => "event_tags",
+		                 "data-pre" => @event.tags.map(&:attributes).to_json %>
+	 </fieldset>
+	</td>
+</tr>
 
-<div class="actions">
-    <%= e.submit "Update Event" %>
-</div>
-   <% end %>
+  <div class="actions">
+      <%= e.submit "Update Event" %>
+  </div>
+     <% end %>

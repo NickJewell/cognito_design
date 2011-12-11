@@ -1,5 +1,5 @@
 $(function() {
-		$(".datepicker").datepicker({
+		$(".datepicker").datetimepicker({
 		                dateFormat : "dd MM yy",
 		                showOn : "both",
 		                changeMonth : true,
