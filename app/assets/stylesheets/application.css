@@ -1,6 +1,4 @@
 /*
- *= require "style" 
- *= require_tree ../../../vendor/assets/stylesheets/token-input/
- *= require vendor
- *= require_tree .
- */
+*= require_tree ../../../vendor/assets/stylesheets
+*= require_tree .
+*/
