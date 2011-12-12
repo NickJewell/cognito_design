@@ -3,13 +3,12 @@
 <p>
 	
 </p>
-<p>
-	<%= form_for @search do |f| %>
-	    <%= f.label "Event Title/Content/Tags contains: " %>
-		<%= f.text_field :title_or_content_or_tag_taggings_tag_name_contains %>
-		<%= f.submit "Search!" %>
-	<% end %>
-</p>
+
+<%= form_tag("/tagsearch_results", :method => "get") do %>
+  <%= label_tag(:q, "Search for:") %>
+  <%= text_field_tag(:q) %>
+  <%= submit_tag("Search") %>
+<% end %>
 
 <%= will_paginate %> 
 <%= render 'eventlist_header' %>

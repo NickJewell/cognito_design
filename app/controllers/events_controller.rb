@@ -148,9 +148,22 @@ class EventsController < ApplicationController
   
   def tagsearch_results
     require 'will_paginate/array'
-    @search = Event.metasearch({:title_or_content_or_tag_taggings_tag_name_contains => params[:search]})
-    @events = @search.paginate(:page => params[:page], :per_page => 10)
+    #@search = Event.metasearch({:title_or_content_or_tag_taggings_tag_name_contains => params[:search]})
+   
     
+    @search = Event.find_by_sql(["SELECT events.* from events 
+                                  WHERE  
+                                    (events.title LIKE ? 
+                                     OR events.content LIKE ?)
+                                  UNION
+                                  SELECT events.* from events 
+                                  INNER JOIN taggings on events.id= taggings.taggable_id
+                                  INNER JOIN tags ON taggings.tag_id = tags.id 
+                                  WHERE taggings.taggable_type = 'Event' 
+                                   and tags.name LIKE ?", 
+                                  "%#{params[:q]}%", "%#{params[:q]}%", "%#{params[:q]}%"])
+                                  
+    @events = @search.paginate(:page => params[:page], :per_page => 10)
     render 'index'
     
   end

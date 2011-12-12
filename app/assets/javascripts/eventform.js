@@ -9,7 +9,7 @@ $(function() {
 								  $( "#duration").val(ui.value);	
 								}
 							});
-	
+								
 	$( "#duration" ).val( $( "#slider").slider("value") );
 							
 	$( "#tabs").tabs();

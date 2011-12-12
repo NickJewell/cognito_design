@@ -1,9 +1,10 @@
 $(function() {
 		$(".datepicker").datetimepicker({
-		                dateFormat : "dd MM yy",
 		                showOn : "both",
 		                changeMonth : true,
 		                changeYear : true,
-		                yearRange : "c-1:c+5"
+		                minDate: -20, 
+						maxDate: "+1M +10D",
+						dateFormat: 'dd/mm/yy'
 		            })
 	});
