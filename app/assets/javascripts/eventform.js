@@ -1,6 +1,11 @@
+
+
 $(function() {
+	var $sld = $(this);
+	var $sld_val = $sld.find("#dbDuration").val();
+	var $isld_val = parseInt($sld_val);
 	$( "#slider").slider(
-							{ value: 15,
+							{ value: $isld_val,
 							  min:   15,
 							  max:   180,
 							  step:  15,
@@ -9,7 +14,8 @@ $(function() {
 								  $( "#duration").val(ui.value);	
 								}
 							});
-								
+	
+							
 	$( "#duration" ).val( $( "#slider").slider("value") );
 							
 	$( "#tabs").tabs();
