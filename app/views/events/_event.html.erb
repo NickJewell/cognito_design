@@ -29,9 +29,7 @@
 	</td>
 	
 	<td>
-	  <% @status = Status.find_by_sql(["SELECT * FROM statuses WHERE id = ?", event.status_id]) %>
-	  <% status = @status[0] %>
-	  <%= status.status_name %>
+
 	</td>
 	
     <td>
