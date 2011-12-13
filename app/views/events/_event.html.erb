@@ -1,45 +1,74 @@
 
-
-	<td><% if event.user_host_id == current_user.id %>
-	  <%= button_to "Delete", {  		:controller => :events,
-										:action 	=> "destroy", :id => event.id },
-										:confirm	=> "Really destroy this event?",
-										:method 	=> :delete %>
-	<% end %></td>
-	<td><% if event.user_host_id == current_user.id %>
-	  <%= link_to "Edit", edit_event_path(event.id) %>
-	<% end %>
-	</td>
+<tr>
 	<td>
-	<%= link_to event.title, event_path(:id => event.id) %>
-	</td><td>  <%= event.duration %> mins.</td>
-	
-	<% # Conditional logic to show Attendee button %>
-
-	<% attendee = Attendee.find(:first, :conditions => ["event_id = ? and user_id = ?", event.id, current_user.id])%>
-	<% if(event.user_host_id != current_user.id) %>
-	<% # don't show attendance button if you're the host %>
-	
-	  <% if(Attendee.count(:conditions => ["event_id = ? and user_id = ?", event.id, current_user.id]) < 1) %>
-	  <td><%= button_to 'Attend', attendees_path(:id => event.id) %></td>
-	
-	  <% else %>
-	    <td><%= button_to "Remove Attendance", { 	:controller => :attendees, 
-												:action => "destroy", :id => event.id },
-			          							:confirm => "Stop Attending?", 
-												:method => :delete %>
- 		</td>
-	
+	  <% if event.user_host_id == current_user.id %>
+	    <%= conditional_delete_button(event.id) %>
 	  <% end %>
+	</td>
+	
+	<td>
+	  <% if event.user_host_id == current_user.id %>
+	    <%= conditional_edit_link(event.id) %>
+	  <% end %>
+	</td>
+	
+	<td>
+	  <%= link_to event.title, event_path(:id => event.id) %>
+	</td>
+	
+	<td>
+	  <%= event.content %>
+	</td>
+	
+	<td>
+	  <%= event.session_datetime %>
+	</td>
+	
+	<td>  
+	  <%= event.duration %> mins.
+	</td>
+	
+	<td>
+	  <% @status = Status.find_by_sql(["SELECT * FROM statuses WHERE id = ?", event.status_id]) %>
+	  <% status = @status[0] %>
+	  <%= status.status_name %>
+	</td>
+	
+    <td>
+
+	  <% attendee = Attendee.find(:first, :conditions => ["event_id = ? and user_id = ?", event.id, current_user.id])%>
+	  <% if(event.user_host_id != current_user.id) %>
+	    <% # don't show attendance button if you're the host %>
+	
+	    <% if(Attendee.count(:conditions => ["event_id = ? and user_id = ?", event.id, current_user.id]) < 1) %>
+	    <td>
+	      <%= button_to 'Attend', attendees_path(:id => event.id) %>
+	    </td>
+	
+	    <% else %>
+	      <td>
+	        <%= button_to "Remove Attendance", { 	:controller => :attendees, 
+													:action => "destroy", :id => event.id },
+			          						 		:confirm => "Stop Attending?", 
+													:method => :delete %>
+ 		  </td>
+	
+	    <% end %>
 	
 	  <% # Conditional logic to show Watcher button %>
 	
 	  <% watcher = Watcher.find(:first, :conditions => ["event_id = ? and user_id = ?", event.id, current_user.id])%>
+	  
 	  <% if(Watcher.count(:conditions => ["event_id = ? and user_id = ?", event.id, current_user.id]) < 1) %>
-	  <td><%= button_to 'Watch', watchers_path(:id => event.id) %></td>
+	    
+	    <td>
+	      <%= button_to 'Watch', watchers_path(:id => event.id) %>
+	    </td>
 	
 	  <% else %>
-	    <td><%= button_to "Remove Watch", { 		:controller => :watchers, 
+	
+	    <td>
+	      <%= button_to "Remove Watch", { 		:controller => :watchers, 
 												:action => "destroy", :id => event.id },
 			          							:confirm => "Remove Event Watch?", 
 												:method => :delete %>
@@ -48,20 +77,40 @@
 	  <% end %>
 	
 	  <% if(Attendee.count(:conditions => ["event_id = ? and user_id = ?", event.id, current_user.id]) >= 1) %>
+	
 	    <% @user = User.find(current_user.id) %>
+	
 	    <% @ev   = Event.find(event.id) %>
+	
 	    <% if(@user.voted_for? @ev ) %>
-	      <td><%= button_to "Remove Vote", { 	            :controller => :attendees, 
-														:action => "remove_vote", :id => event.id } %></td>
+	
+	      <td>
+	        <%= button_to "Remove Vote", { 	            :controller => :attendees, 
+														:action => "remove_vote", :id => event.id } %>
+		  </td>
+		
 	    <% else %>
-	  	  <td><%= button_to "+1", { 	            :controller => :attendees, 
-													:action => "add_vote", :id => event.id } %></td>
+	  	  
+	      <td>
+	        <%= button_to "+1", { 	            :controller => :attendees, 
+													:action => "add_vote", :id => event.id } %>
+		  </td>
+		
 	    <% end %>
 	
+	  <% else %>
+	
+	  <td></td>
+		
 	  <% end %>
-    
+	
+	<% else %>
+	
+	<td></td>
+	
     <% end %>
 
+	<td></td>
 
-	</tr>
+</tr>
 
