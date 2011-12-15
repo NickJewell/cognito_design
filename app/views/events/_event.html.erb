@@ -29,7 +29,12 @@
 	</td>
 	
 	<td>
-
+	  <%  if event.status_id.blank? %>
+	    N/A
+	  <% else %>
+	    <% @status = Status.find(event.status_id) %>
+	    <%= @status.status_name %>
+	  <% end %>
 	</td>
 	
     <td>
