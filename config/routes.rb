@@ -5,6 +5,7 @@ Cognito1::Application.routes.draw do
   match "/tagsearch_results/" => "events#tagsearch_results", :via => :get, :as =>"tagsearch_results"
   match "popular/events", :to => "events#popularevents"
   match "popular/tags", :to => "events#popular_tags"
+  match "popular/users", :to => "events#popular_users"
   
   get "events/tagsearch" => "events#tagsearch", :as => :tagsearch
 

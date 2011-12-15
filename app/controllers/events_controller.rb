@@ -146,6 +146,20 @@ class EventsController < ApplicationController
                             
   end
   
+  def popular_users
+    @title = "Popular Users"
+
+    @top_users = Event.find(:all,
+                            :select => 'user_host_id, count(votes.id) as vote_count',
+                            :joins  => 'INNER JOIN votes on events.id = votes.voteable_id',
+                            :group  => 'user_host_id',
+                            :limit  => 10,
+                            :order  => 'count(votes.id) DESC',
+                            :conditions => ["vote = ?", true])
+
+                            
+  end
+  
   def tagsearch_results
     require 'will_paginate/array'
     #@search = Event.metasearch({:title_or_content_or_tag_taggings_tag_name_contains => params[:search]})
