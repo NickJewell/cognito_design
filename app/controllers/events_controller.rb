@@ -1,5 +1,6 @@
 class EventsController < ApplicationController
   before_filter :authenticate
+  helper_method :sort_column, :sort_direction
 
   def tags 
       @tags = ActsAsTaggableOn::Tag.where("tags.name LIKE ?", "%#{params[:q]}%") 
@@ -13,7 +14,8 @@ class EventsController < ApplicationController
     @title = "All Events"
     @user = User.find(current_user.id)
     @search = Event.search(params[:search])
-    @events = @search.paginate(:page => params[:page], :per_page => 10)
+    @search_sort = @search.order(sort_column + ' ' + sort_direction)
+    @events = @search_sort.paginate(:page => params[:page], :per_page => 10)
   end
   
   def tagsearch
@@ -197,6 +199,15 @@ class EventsController < ApplicationController
     @events = @search.paginate(:page => params[:page], :per_page => 10)
     render 'index'
     
+  end
+  
+  private
+  def sort_column
+    params[:sort] || "title"
+  end
+  
+  def sort_direction
+    params[:direction] || "asc"
   end
   
 end
