@@ -64,6 +64,7 @@ Cognito1::Application.routes.draw do
   match '/signin', :to => 'sessions#new'
   match '/signout', :to => 'sessions#destroy'
   match '/popular', :to => 'pages#popular'
+  match '/test', :to => 'pages#test'
   
   
   root :to => 'pages#home'

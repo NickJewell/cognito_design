@@ -18,4 +18,8 @@ class PagesController < ApplicationController
   def popular_tags
     redirect_to '/popular/tags/'
   end
+  
+  def test
+    @title = "Hello"
+  end
 end
