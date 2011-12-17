@@ -1,16 +1,18 @@
-<div id="tabs">
-	<ul>
-		<li><a href="#tabs-1">Core Event Details</a></li>
-		<li><a href="#tabs-2">Event Content</a></li>
-		<li><a href="#tabs-3">Event Properties</a></li>
-		<li><a href="#tabs-4">Event Misc</a></li>
-		<li><a href="#tabs-5">Attend/Watch</a></li>
-		<% if @events.user_host_id == current_user.id %><li><a href="#tabs-6">Event Admin</a></li><% end %>
+<div id="wrapper">
+	<ul class="tabsNJ">
+		<li><a href="#" class="defaulttab" rel="tabs1">Core Event Details</a></li>
+		<li><a href="#" rel="tabs2">Event Content</a></li>
+	    <li><a href="#" rel="tabs3">Event Properties</a></li>
+		<li><a href="#" rel="tabs4">Event Misc</a></li>
+		<li><a href="#" rel="tabs5">Attend/Watch</a></li>
+
+		<% if @events.user_host_id == current_user.id %><li><a href="#" rel="tabs6">Event Admin</a></li><% end %>
 	</ul>
 	<br/>
-	<h3>Event:</h3>
 
-	  <div id="tabs-1">
+
+    <div class="tab-content" id="tabs1">
+
 		<tr>
 	      <td><%= label :title, "Title" %> : <%= @events.title %></td>	
 	    </tr><br/>
@@ -25,7 +27,8 @@
 
 	  </div>
 	
-	<div id="tabs-2">
+	<div class="tab-content" id="tabs2">
+
 	  <tr>
 
 		  <div>
@@ -33,58 +36,58 @@
 		  </div>
 
       </tr>
+
 	</div>
 	
-	
-	
-	<div id="tabs-3">
-		  <tr>
-			  <fieldset>
-				<td>
-				  <%  if @events.status_id.blank? %>
-				    <b>Status :</b> N/A
-				  <% else %>
-				    <% @status = Status.find(@events.status_id) %>
-				    <b>Status :</b> <%= @status.status_name %>
-				  <% end %>
-				</td><br/>
-				<td>
-				  <%  if @events.timezone_id.blank? %>
-				    <b>Timezone :</b> N/A
-				  <% else %>
-				    <% @tz = Timezone.find(@events.timezone_id) %>
-				    <b>Timezone :</b> <%= @tz.timezone_name %>
-				  <% end %>
-				</td><br/>
-				<td>
-				  <%  if @events.channel_id.blank? %>
-				    <b>Channel :</b> N/A
-				  <% else %>
-				    <% @ch = Channel.find(@events.channel_id) %>
-				    <b>Channel :</b> <%= @ch.channel_name %>
-				  <% end %>
-				</td><br/>
-				<td>
-				  <%  if @events.size_id.blank? %>
-				    <b>Size :</b> N/A
-				  <% else %>
-				    <% @sz = Size.find(@events.size_id) %>
-				    <b>Size :</b> <%= @sz.size_name %>
-				  <% end %>
-				</td><br/>
-				<td>
-				  <%  if @events.difficulty_id.blank? %>
-				    <b>Difficulty :</b> N/A
-				  <% else %>
-				    <% @dif = Difficulty.find(@events.difficulty_id) %>
-				    <b>Difficulty :</b> <%= @dif.difficulty_name %>
-				  <% end %>
-				</td><br/>
-				</fieldset>
-		</tr>
+	<div class="tab-content" id="tabs3">
+			  <tr>
+				  <fieldset>
+					<td>
+					  <%  if @events.status_id.blank? %>
+					    <b>Status :</b> N/A
+					  <% else %>
+					    <% @status = Status.find(@events.status_id) %>
+					    <b>Status :</b> <%= @status.status_name %>
+					  <% end %>
+					</td><br/>
+					<td>
+					  <%  if @events.timezone_id.blank? %>
+					    <b>Timezone :</b> N/A
+					  <% else %>
+					    <% @tz = Timezone.find(@events.timezone_id) %>
+					    <b>Timezone :</b> <%= @tz.timezone_name %>
+					  <% end %>
+					</td><br/>
+					<td>
+					  <%  if @events.channel_id.blank? %>
+					    <b>Channel :</b> N/A
+					  <% else %>
+					    <% @ch = Channel.find(@events.channel_id) %>
+					    <b>Channel :</b> <%= @ch.channel_name %>
+					  <% end %>
+					</td><br/>
+					<td>
+					  <%  if @events.size_id.blank? %>
+					    <b>Size :</b> N/A
+					  <% else %>
+					    <% @sz = Size.find(@events.size_id) %>
+					    <b>Size :</b> <%= @sz.size_name %>
+					  <% end %>
+					</td><br/>
+					<td>
+					  <%  if @events.difficulty_id.blank? %>
+					    <b>Difficulty :</b> N/A
+					  <% else %>
+					    <% @dif = Difficulty.find(@events.difficulty_id) %>
+					    <b>Difficulty :</b> <%= @dif.difficulty_name %>
+					  <% end %>
+					</td><br/>
+					</fieldset>
+			</tr>	
 	</div>
-	<div id="tabs-4">
-	    <tr>
+	
+	<div class="tab-content" id="tabs4">
+		<tr>
 			<div>
 			  <td><%= label :title, "Pre Reqs" %> : <%= @events.prereqs %></td>	
 			</div>
@@ -92,62 +95,66 @@
 	    </tr>
 	</div>
 	
-    <div id="tabs-5">
-	  <p>You may see nothing in this tab if you are the host of this event</p>
-	  <% attendee = Attendee.find(:first, :conditions => ["event_id = ? and user_id = ?", @events.id, current_user.id])%>
-	  <% if(@events.user_host_id != current_user.id) %>
-	    <% # don't show attendance button if you're the host %>
+	<div class="tab-content" id="tabs5">
+		 <p>You may see nothing in this tab if you are the host of this event</p>
+		  <% attendee = Attendee.find(:first, :conditions => ["event_id = ? and user_id = ?", @events.id, current_user.id])%>
+		  <% if(@events.user_host_id != current_user.id) %>
+		    <% # don't show attendance button if you're the host %>
 
-	    <% if(Attendee.count(:conditions => ["event_id = ? and user_id = ?", @events.id, current_user.id]) < 1) %>
-	    <td>
-	      <%= button_to 'Attend', attendees_path(:id => @events.id) %>
-	    </td>
+		    <% if(Attendee.count(:conditions => ["event_id = ? and user_id = ?", @events.id, current_user.id]) < 1) %>
+		    <td>
+		      <%= button_to 'Attend', attendees_path(:id => @events.id) %>
+		    </td>
 
-	    <% else %>
-	      <td>
-	        <%= button_to "Remove Attendance", { 	:controller => :attendees, 
+		    <% else %>
+		      <td>
+		        <%= button_to "Remove Attendance", { 	:controller => :attendees, 
+														:action => "destroy", :id => @events.id },
+				          						 		:confirm => "Stop Attending?", 
+														:method => :delete %>
+	 		  </td>
+
+		    <% end %>
+
+		  <% watcher = Watcher.find(:first, :conditions => ["event_id = ? and user_id = ?", @events.id, current_user.id])%>
+
+		  <% if(Watcher.count(:conditions => ["event_id = ? and user_id = ?", @events.id, current_user.id]) < 1) %>
+
+		    <td>
+		      <%= button_to 'Watch', watchers_path(:id => @events.id) %>
+		    </td>
+
+		  <% else %>
+
+		    <td>
+		      <%= button_to "Remove Watch", { 		:controller => :watchers, 
 													:action => "destroy", :id => @events.id },
-			          						 		:confirm => "Stop Attending?", 
+				          							:confirm => "Remove Event Watch?", 
 													:method => :delete %>
- 		  </td>
+	 		</td>
 
-	    <% end %>
+		  <% end %>
+
+		  <% end %>
+	</div>
 	
-	  <% watcher = Watcher.find(:first, :conditions => ["event_id = ? and user_id = ?", @events.id, current_user.id])%>
+	<div class="tab-content" id="tabs6">
+		 <p>Admin screen for your event</p><br/>
+		<tr>
+			<td>
+			  <% if @events.user_host_id == current_user.id %>
+			    Click this button to delete this event: <%= conditional_delete_button(@events.id) %>
+			  <% end %>
+			</td>
 
-	  <% if(Watcher.count(:conditions => ["event_id = ? and user_id = ?", @events.id, current_user.id]) < 1) %>
-
-	    <td>
-	      <%= button_to 'Watch', watchers_path(:id => @events.id) %>
-	    </td>
-
-	  <% else %>
-
-	    <td>
-	      <%= button_to "Remove Watch", { 		:controller => :watchers, 
-												:action => "destroy", :id => @events.id },
-			          							:confirm => "Remove Event Watch?", 
-												:method => :delete %>
- 		</td>
-
-	  <% end %>
-	 
-	  <% end %>
+			<td>
+			  <% if @events.user_host_id == current_user.id %>
+			    Click this link to edit this event: <%= conditional_edit_link(@events.id) %>
+			  <% end %>
+			</td>
 	</div>
-   
-   <div id="tabs-6">
-	  <p>Admin screen for your event</p><br/>
-	<tr>
-		<td>
-		  <% if @events.user_host_id == current_user.id %>
-		    Click this button to delete this event: <%= conditional_delete_button(@events.id) %>
-		  <% end %>
-		</td>
-
-		<td>
-		  <% if @events.user_host_id == current_user.id %>
-		    Click this link to edit this event: <%= conditional_edit_link(@events.id) %>
-		  <% end %>
-		</td>
-	</div>
+	
+	
+	
+	
 </div>

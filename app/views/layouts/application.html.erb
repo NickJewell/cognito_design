@@ -3,14 +3,13 @@
 	<title>Cognito: <%= title %></title>	
 	<%= csrf_meta_tag %>
 	<%= render 'layouts/stylesheets' %>
-	<%= javascript_include_tag :defaults, "application", "jquery.tokeninput" %>
+	<%= javascript_include_tag :defaults, "application", "jquery.tokeninput", "tabSwitch" %>
 	<%= stylesheet_link_tag :defaults, 
 							"application", 
-							"token-input", 
 							"token-input/token-input-facebook",
-							"form", 
 							"css/jquery_ui/jquery-ui-1.8.16.custom" , 		
-							"general", :cache => true %>
+							"general",
+							"newTab" %>
 
 
 </head>
