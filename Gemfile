@@ -32,6 +32,7 @@ gem 'thumbs_up'
 #Trying out simple-navigation
 gem 'simple-navigation'
 
+gem 'tabulous'
 
 group :production do
   gem 'therubyracer'
