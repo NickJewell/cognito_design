@@ -1,3 +1,3 @@
 $(function(){
-    $("ul#ticker01").liScroll({travelocity: 0.15});
+    $("ul#ticker01").liScroll({travelocity: 0.05});
 });

@@ -49,7 +49,8 @@ $(function() {
 											collapsible: true,
 											autoHeight: false, 
 											active: false
-								});							
+								});	
+					
 
 });
 
