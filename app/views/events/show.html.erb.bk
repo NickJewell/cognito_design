@@ -1,0 +1,6 @@
+<h1>Events</h1>
+
+<%= render 'eventlist_header' %>
+	<%= render @events %>
+</table>
+</ul>

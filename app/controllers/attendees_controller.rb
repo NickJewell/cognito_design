@@ -9,7 +9,7 @@ class AttendeesController < ApplicationController
                                           created_at: Time.now, 
                                           updated_at: Time.now ) 
      if @attendee.save
-        redirect_to events_path, :flash => { :success => "Attendee Added"}
+        redirect_to event_path(@event.id), :flash => { :success => "Attendee Added"}
       else
         render 'events'
       end
@@ -25,7 +25,7 @@ class AttendeesController < ApplicationController
   def destroy
      @attendee = Attendee.find(:first, :conditions => ["event_id = ? and user_id = ?", @event.id, current_user.id])
      @attendee.destroy
-     redirect_to events_path, :flash => { :error => "Attendee Removed"}
+     redirect_to event_path(@event.id), :flash => { :error => "Attendee Removed"}
    end
 
   

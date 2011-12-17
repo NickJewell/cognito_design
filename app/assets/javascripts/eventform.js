@@ -4,6 +4,7 @@ $(function() {
 	var $sld = $(this);
 	var $sld_val = $sld.find("#dbDuration").val();
 	var $isld_val = parseInt($sld_val);
+	if ($isld_val = "") { $isld_val = 15 } else { $isld_val = parseInt($sld_val);};
 	$( "#slider").slider(
 							{ value: $isld_val,
 							  min:   15,
@@ -35,6 +36,20 @@ $(function() {
 									maxDate: "+1M +10D",
 									dateFormat: 'dd/mm/yy'
 								 });
+								
+	
+	
+	$( "#accordion" ).accordion({
+											collapsible: true,
+											autoHeight: false, 
+											active: false
+								 });
+	$( "#accordion2" ).accordion({
+											collapsible: true,
+											autoHeight: false, 
+											active: false
+								});							
+
 });
 
 function setbg(color)

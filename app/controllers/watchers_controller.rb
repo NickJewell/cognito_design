@@ -9,7 +9,7 @@ class WatchersController < ApplicationController
                                             created_at: Time.now, 
                                             updated_at: Time.now ) 
        if @watcher.save
-          redirect_to events_path, :flash => { :success => "Event Watch Added"}
+          redirect_to event_path(@event.id), :flash => { :success => "Event Watch Added"}
         else
           render 'events'
         end
@@ -25,7 +25,7 @@ class WatchersController < ApplicationController
     def destroy
        @watcher = Watcher.find(:first, :conditions => ["event_id = ? and user_id = ?", @event.id, current_user.id])
        @watcher.destroy
-       redirect_to events_path, :flash => { :error => "Event Watch Removed"}
+       redirect_to event_path(@event.id), :flash => { :error => "Event Watch Removed"}
      end
 
 
