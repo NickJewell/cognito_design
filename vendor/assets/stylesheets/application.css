@@ -5,4 +5,5 @@
  *= require_self
  *= require_tree ../../../vendor/assets/stylesheets
  *= require_tree . 
+ *= require_tree ./vendor.css/jquery_ui
 */
