@@ -5,6 +5,8 @@ $(document).ready(function() {
 	});
  
 	switch_tabs($('.defaulttab'));
+	
+
  
 });
  
