@@ -1,23 +1,23 @@
-<div id="wrapper">
-	<ul class="tabsNJ">
-		<li><a href="#" class="defaulttab" rel="tabs1">Core Event Details</a></li>
-		<li><a href="#" rel="tabs2">Event Content</a></li>
-	    <li><a href="#" rel="tabs3">Event Properties</a></li>
-		<li><a href="#" rel="tabs4">Event Misc</a></li>
+<div id="tabs">
+	<ul>
+		<li><a href="#tabs-1">Core Event Details</a></li>
+		<li><a href="#tabs-2">Event Content</a></li>
+		<li><a href="#tabs-3">Event Properties</a></li>
+		<li><a href="#tabs-4">Event Misc</a></li>
 	</ul>
 	<br/>
+	<h3>Let's create!</h3>
+	  <%= form_for(@event, :html => { :class => "myform"}) do |e| %>
 
-    <%= form_for(@event) do |e| %>
-    <div class="tab-content" id="tabs1">
-
-		<%= e.label :title, "Title" %> : <%= e.text_field(:title) %></td>	
+	  <div id="tabs-1">
+	    <%= e.label :title, "Title" %> : <%= e.text_field(:title) %></td>	
 	    </tr>
 	    <tr>
 	      <td><%= e.label :title, "Event Date" %> :<%= e.text_field(:session_datetime, :class => "datepicker") %></td>	
 	    </tr>
 
 
-	    <tr><%= e.text_area :duration, :id => "dbDuration", :hidden => :true %>
+	    <tr>
 	      <td>
 		    <fieldset>
 			  <%= e.label :duration, "Event Duration (mins)" %> :
@@ -29,14 +29,12 @@
 		  </td>
 	   </tr>
 	
-		<div class="actions">
-	      <%= e.submit "Create Event" %>
-	    </div>
+	<div class="actions">
+      <%= e.submit "Create Event" %>
+    </div>
+	</div>
 	
-	  </div>
-	
-	<div class="tab-content" id="tabs2">
-
+	<div id="tabs-2">
 	  <tr>
 	    <div id="accordion">
 	  	  <h3><a href="#">Add your Content Here!</a></h3>
@@ -45,11 +43,12 @@
 		  </div>
 	    </div>
       </tr>
-
 	</div>
 	
-	<div class="tab-content" id="tabs3">
-		<tr>
+	
+	
+	<div id="tabs-3">
+		  <tr>
 		    <td>
 			  <fieldset>
 				  <%= e.collection_select(:channel_id, @channels, :id, :channel_name, options ={:prompt => "-Select a channel"}) %>
@@ -65,20 +64,17 @@
 			</td>
 		</tr>
 	</div>
-	
-	<div class="tab-content" id="tabs4">
-		 <tr>
-			  <div id="accordion2">
-			  	<h3><a href="#">Any Pre-Requisites?</a></h3>
-				<div>
-				  <td><%= e.label :title, "Pre Reqs" %> : <%= e.text_area(:prereqs, :cols => "30", :rows => "10") %></td>	
-				</div>
-			  </div>
-		    </tr>
+	<div id="tabs-4">
+	    <tr>
+		  <div id="accordion2">
+		  	<h3><a href="#">Any Pre-Requisites?</a></h3>
+			<div>
+			  <td><%= e.label :title, "Pre Reqs" %> : <%= e.text_area(:prereqs, :cols => "30", :rows => "10") %></td>	
+			</div>
+		  </div>
+	    </tr>
 	</div>
 
-	
 	<% end %>
-	
-	
+
 </div>

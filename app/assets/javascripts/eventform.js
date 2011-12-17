@@ -5,6 +5,7 @@ $(function() {
 	var $sld_val = $sld.find("#dbDuration").val();
 	var $isld_val = parseInt($sld_val);
 	if ($isld_val = "") { $isld_val = 15 } else { $isld_val = parseInt($sld_val);};
+	if (isNaN($isld_val)) {$isld_val = 15} else { $isld_val = parseInt($sld_val);};
 	$( "#slider").slider(
 							{ value: $isld_val,
 							  min:   15,
