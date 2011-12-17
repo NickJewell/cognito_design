@@ -8,4 +8,5 @@
 //= require jquery_ujs
 //= require jquery-ui
 //= require jquery.tokeninput
+//= require jquery.li-scroller.1.0.js
 //= require_tree .
