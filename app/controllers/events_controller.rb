@@ -16,6 +16,10 @@ class EventsController < ApplicationController
     @search = Event.search(params[:search])
     @search_sort = @search.order(sort_column + ' ' + sort_direction)
     @events = @search_sort.paginate(:page => params[:page], :per_page => 10)
+    
+    @scroller = Event.all(:order => "session_datetime DESC",
+                          :limit => 50)
+    
   end
   
   def tagsearch

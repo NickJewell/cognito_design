@@ -1,0 +1,5 @@
+<ul id="ticker01">
+	<% @scroller.each do |ev| %>
+      <li><span><%= ev.session_datetime %></span><%= link_to ev.title, event_path(:id => ev.id) %></li>
+	<% end %>
+</ul>

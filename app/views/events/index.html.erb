@@ -3,7 +3,7 @@
 <p>
 	
 </p>
-
+<%= render 'event_scroll', :collection => @scroller %>
 <%= form_tag("/tagsearch_results", :method => "get") do %>
   <%= label_tag(:q, "Search for:") %>
   <%= text_field_tag(:q) %>
