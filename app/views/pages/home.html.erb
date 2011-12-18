@@ -3,8 +3,13 @@
   <table class="front" summary="For Signed-In Users">
 	<tr>
 		<td class="main">
-		  <h1 class="micropost">What's Cookin' Cognito?:</h1>
+		  <h3>Latest Events Posted!</h3>
+		  <%= render 'pages/event_scroll', :collection => @scroller %>
+		  <br/>
+		  <h3 class="micropost">What's Cookin' Cognito?:</h3>
 		  <%= render 'shared/micropost_form'%>
+
+		  <h3>Buzz from the Cognitosphere!</h3>
 		  <%= render 'shared/feed'%>
 	    </td>
 		<td class = "sidebar round">

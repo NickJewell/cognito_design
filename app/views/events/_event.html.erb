@@ -1,84 +1,5 @@
 
 <tr>
-	<td>
-	  <% if event.user_host_id == current_user.id %>
-	    <%= conditional_delete_button(event.id) %>
-	  <% end %>
-	</td>
-	
-	<td>
-	  <% if event.user_host_id == current_user.id %>
-	    <%= conditional_edit_link(event.id) %>
-	  <% end %>
-	</td>
-	
-	<td>
-	  <%= link_to event.title, event_path(:id => event.id) %>
-	</td>
-	
-	<td>
-	  <%= event.content %>
-	</td>
-	
-	<td>
-	  <%= event.session_datetime %>
-	</td>
-	
-	<td>  
-	  <%= event.duration %> mins.
-	</td>
-	
-	<td>
-	  <%  if event.status_id.blank? %>
-	    N/A
-	  <% else %>
-	    <% @status = Status.find(event.status_id) %>
-	    <%= @status.status_name %>
-	  <% end %>
-	</td>
-	
-    <td>
-
-	  <% attendee = Attendee.find(:first, :conditions => ["event_id = ? and user_id = ?", event.id, current_user.id])%>
-	  <% if(event.user_host_id != current_user.id) %>
-	    <% # don't show attendance button if you're the host %>
-	
-	    <% if(Attendee.count(:conditions => ["event_id = ? and user_id = ?", event.id, current_user.id]) < 1) %>
-	    <td>
-	      <%= button_to 'Attend', attendees_path(:id => event.id) %>
-	    </td>
-	
-	    <% else %>
-	      <td>
-	        <%= button_to "Remove Attendance", { 	:controller => :attendees, 
-													:action => "destroy", :id => event.id },
-			          						 		:confirm => "Stop Attending?", 
-													:method => :delete %>
- 		  </td>
-	
-	    <% end %>
-	
-	  <% # Conditional logic to show Watcher button %>
-	
-	  <% watcher = Watcher.find(:first, :conditions => ["event_id = ? and user_id = ?", event.id, current_user.id])%>
-	  
-	  <% if(Watcher.count(:conditions => ["event_id = ? and user_id = ?", event.id, current_user.id]) < 1) %>
-	    
-	    <td>
-	      <%= button_to 'Watch', watchers_path(:id => event.id) %>
-	    </td>
-	
-	  <% else %>
-	
-	    <td>
-	      <%= button_to "Remove Watch", { 		:controller => :watchers, 
-												:action => "destroy", :id => event.id },
-			          							:confirm => "Remove Event Watch?", 
-												:method => :delete %>
- 		</td>
-	
-	  <% end %>
-	
 	  <% if(Attendee.count(:conditions => ["event_id = ? and user_id = ?", event.id, current_user.id]) >= 1) %>
 	
 	    <% @user = User.find(current_user.id) %>
@@ -107,13 +28,69 @@
 		
 	  <% end %>
 	
-	<% else %>
+	<td>
+	  <%= event.created_at.strftime('%d/%m/%Y %H:%M (%Z)') %>
+	</td>
+	<td>
+	  <%= link_to event.title, event_path(:id => event.id) %>
+	</td>
 	
-	<td></td>
+	<td>
+	  <% if event.content.blank? %>
+	    --
+	  <% else %>
+	    <%= event.content %>
+	  <% end %>
+	</td>
 	
-    <% end %>
+	<td>
+	  <% if event.session_datetime.blank? %>
+	    N/A
+	  <% else %>
+	    <%= event.session_datetime.strftime('%d/%m/%Y %H:%M (%Z)') %>
+	  <% end %>
+	</td>
+	
+	<td>  
+	  <%= event.duration %> mins.
+	</td>
+	
+	<td>
+	  <%  if event.status_id.blank? %>
+	    N/A
+	  <% else %>
+	    <% @status = Status.find(event.status_id) %>
+	    <%= @status.status_name %>
+	  <% end %>
+	</td>
+	
+	<td>
+	  <%  if event.timezone_id.blank? %>
+	    N/A
+	  <% else %>
+	    <% @tz = Timezone.find(event.timezone_id) %>
+	    <%= @tz.timezone_name %>
+	  <% end %>
+	</td>
 
-	<td></td>
+
+	<td>
+	  <%  if event.channel_id.blank? %>
+	    N/A
+	  <% else %>
+	    <% @ch = Channel.find(event.channel_id) %>
+	    <%= @ch.channel_name %>
+	  <% end %>
+	</td>
+	
+	<td>
+	  <%  if event.size_id.blank? %>
+	    N/A
+	  <% else %>
+	    <% @sz = Size.find(event.size_id) %>
+	    <%= @sz.size_name %>
+	  <% end %>
+	</td>
 
 </tr>
 
