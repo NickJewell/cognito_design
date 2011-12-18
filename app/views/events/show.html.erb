@@ -7,7 +7,8 @@
 		<li><a href="#" rel="tabs5">Attend/Watch</a></li>
 		<li><a href="#" rel="tabs6">Resources</a></li>
 
-		<% if @events.user_host_id == current_user.id %><li><a href="#" rel="tabs7">Event Admin</a></li><% end %>
+		<% if @events.user_host_id == current_user.id %><li><a href="#" rel="tabs9">Event Admin</a></li><% end %>
+		
 	</ul>
 	<br/>
 
@@ -97,46 +98,71 @@
 	</div>
 	
 	<div class="tab-content" id="tabs5">
-		 <p>You may see nothing in this tab if you are the host of this event</p>
-		  <% attendee = Attendee.find(:first, :conditions => ["event_id = ? and user_id = ?", @events.id, current_user.id])%>
-		  <% if(@events.user_host_id != current_user.id) %>
-		    <% # don't show attendance button if you're the host %>
+		<table>
+		 <tr>
+			<td>
+				<b>Attendees:</b>
+				<ul>
+		  			<% @events.attendees.each do |att| %>
+		    	  	  <li><%= User.find(att.user_id).name %></li>
+		  			<% end %>
+				</ul>
+			</td>
+			<td>
+			  <b>Watchers:</b>
+			  <ul>
+			    <% @events.watchers.each do |wat| %>
+			      <li><%= User.find(wat.user_id).name %></li>
+			    <% end %>
+			  </ul>
+			</td>
+		</tr>
+		
+		</table>
+		
+			
+				<% attendee = Attendee.find(:first, :conditions => ["event_id = ? and user_id = ?", @events.id, current_user.id])%>
+				  <% if(@events.user_host_id != current_user.id) %>
+				    <% # don't show attendance button if you're the host %>
 
-		    <% if(Attendee.count(:conditions => ["event_id = ? and user_id = ?", @events.id, current_user.id]) < 1) %>
-		    <td>
-		      <%= button_to 'Attend', attendees_path(:id => @events.id) %>
-		    </td>
+				    <% if(Attendee.count(:conditions => ["event_id = ? and user_id = ?", @events.id, current_user.id]) < 1) %>
+				    
+				      <%= button_to 'Attend', attendees_path(:id => @events.id) %>
+				    
 
-		    <% else %>
-		      <td>
-		        <%= button_to "Remove Attendance", { 	:controller => :attendees, 
-														:action => "destroy", :id => @events.id },
-				          						 		:confirm => "Stop Attending?", 
-														:method => :delete %>
-	 		  </td>
+				    <% else %>
+				      
+				        <%= button_to "Remove Attendance", { 	:controller => :attendees, 
+																:action => "destroy", :id => @events.id },
+						          						 		:confirm => "Stop Attending?", 
+																:method => :delete %>
+			 		  
 
-		    <% end %>
+				    <% end %>
+				   <% end %>
+			
+			
+				  <% watcher = Watcher.find(:first, :conditions => ["event_id = ? and user_id = ?", @events.id, current_user.id])%>
 
-		  <% watcher = Watcher.find(:first, :conditions => ["event_id = ? and user_id = ?", @events.id, current_user.id])%>
+				  <% if(Watcher.count(:conditions => ["event_id = ? and user_id = ?", @events.id, current_user.id]) < 1) %>
 
-		  <% if(Watcher.count(:conditions => ["event_id = ? and user_id = ?", @events.id, current_user.id]) < 1) %>
+				   
+				      <%= button_to 'Watch', watchers_path(:id => @events.id) %>
+				   
 
-		    <td>
-		      <%= button_to 'Watch', watchers_path(:id => @events.id) %>
-		    </td>
+				  <% else %>
 
-		  <% else %>
+				    
+				      <%= button_to "Remove Watch", { 		:controller => :watchers, 
+															:action => "destroy", :id => @events.id },
+						          							:confirm => "Remove Event Watch?", 
+															:method => :delete %>
+			 		
 
-		    <td>
-		      <%= button_to "Remove Watch", { 		:controller => :watchers, 
-													:action => "destroy", :id => @events.id },
-				          							:confirm => "Remove Event Watch?", 
-													:method => :delete %>
-	 		</td>
+				  <% end %>
+		
 
-		  <% end %>
-
-		  <% end %>
+		
 	</div>
 	
 	<div class="tab-content" id="tabs6">
@@ -147,9 +173,9 @@
 		</ul>
 	</div>
 	
+
 	
-	
-	<div class="tab-content" id="tabs7">
+	<div class="tab-content" id="tabs9">
 		 <p>Admin screen for your event</p><br/>
 		<tr>
 			<td>
