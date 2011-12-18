@@ -4,10 +4,11 @@
 		<li><a href="#" rel="tabs2">Event Content</a></li>
 	    <li><a href="#" rel="tabs3">Event Properties</a></li>
 		<li><a href="#" rel="tabs4">Event Misc</a></li>
+		<li><a href="#" rel="tabs5">Resources</a></li>
 	</ul>
 	<br/>
 
-    <%= form_for(@event) do |e| %>
+    <%= nested_form_for(@event) do |e| %>
     <div class="tab-content" id="tabs1">
 
 		<%= e.label :title, "Title" %> : <%= e.text_field(:title) %></td>	
@@ -77,6 +78,21 @@
 		    </tr>
 	</div>
 
+
+	<div class="tab-content" id="tabs5">
+		 <tr>
+			 <%= e.fields_for :resources do |resource_form| %>
+			  <%= resource_form.label "URL: " %>
+			  <%= resource_form.text_field :resource_url %>
+			  <%= resource_form.label "Description: " %>
+			  <%= resource_form.text_field :resource_description %>
+			  <%= resource_form.label "External Resource?: " %>
+			  <%= resource_form.text_field :ext_int_indicator %>
+			  <%= resource_form.link_to_remove "Remove" %>
+			<% end %>
+			<p><%= e.link_to_add "Add a resource", :resources %></p>
+		 </tr>
+	</div>
 	
 	<% end %>
 	

@@ -46,6 +46,7 @@ class Event < ActiveRecord::Base
   
 
   attr_accessible :tag_list, :event_tokens, :user_host_id, :channel_id, :difficulty_id, :status_id, :timezone_id, :size_id, :title, :content, :session_datetime, :duration, :prereqs
+  attr_accessible :resources_attributes
   attr_reader :event_tokens
 
   class << self

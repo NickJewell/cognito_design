@@ -21,7 +21,7 @@ gem 'meta_search'
 gem 'acts-as-taggable-on'
 
 #Trying out Nested Form
-gem 'nested_form'
+gem 'nested_form', :git => "git://github.com/ryanb/nested_form.git"
 
 #Trying out formtastic
 gem 'formtastic'

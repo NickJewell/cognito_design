@@ -5,8 +5,9 @@
 	    <li><a href="#" rel="tabs3">Event Properties</a></li>
 		<li><a href="#" rel="tabs4">Event Misc</a></li>
 		<li><a href="#" rel="tabs5">Attend/Watch</a></li>
+		<li><a href="#" rel="tabs6">Resources</a></li>
 
-		<% if @events.user_host_id == current_user.id %><li><a href="#" rel="tabs6">Event Admin</a></li><% end %>
+		<% if @events.user_host_id == current_user.id %><li><a href="#" rel="tabs7">Event Admin</a></li><% end %>
 	</ul>
 	<br/>
 
@@ -139,6 +140,16 @@
 	</div>
 	
 	<div class="tab-content" id="tabs6">
+		<ul>
+		  <% @events.resources.each do |res| %>
+		    <li><%= link_to(res.resource_description, res.resource_url) %> - <%= res.ext_int_indicator %></li>
+		  <% end %>
+		</ul>
+	</div>
+	
+	
+	
+	<div class="tab-content" id="tabs7">
 		 <p>Admin screen for your event</p><br/>
 		<tr>
 			<td>
@@ -154,7 +165,6 @@
 			</td>
 	</div>
 	
-	
-	
+
 	
 </div>
