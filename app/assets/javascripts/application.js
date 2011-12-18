@@ -9,5 +9,4 @@
 //= require jquery-ui
 //= require jquery.tokeninput
 //= require_tree .
-//= require ../../../vendor/assets/javascripts/nested_form
 
